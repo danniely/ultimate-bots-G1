@@ -3,7 +3,7 @@ set -euo pipefail
 
 PROJECT_ROOT="/workspace/ultimate-bots-G1"
 SONIC_ROOT="/workspace/GR00T-WholeBodyControl"
-VENV_PATH="/workspace/env_isaaclab"
+VENV_PATH="/opt/env_isaaclab"
 
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \

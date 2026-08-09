@@ -13,8 +13,9 @@ before/after videos.
 ```text
 /workspace/
 ├── GR00T-WholeBodyControl/  # NVIDIA upstream source
-├── ultimate-bots-G1/        # this repository
-└── env_isaaclab/            # Python 3.11 environment
+└── ultimate-bots-G1/        # this repository
+/opt/
+└── env_isaaclab/            # regenerable Python 3.11 environment
 ```
 
 ## Setup
@@ -26,3 +27,5 @@ bash /workspace/ultimate-bots-G1/scripts/setup_runpod.sh
 Large final artifacts are tracked with Git LFS. Intermediate checkpoints stay
 on the RunPod volume and are not committed.
 
+The Python environment lives on the faster container disk because Isaac Sim
+contains many small files. Re-run the setup script after recreating a Pod.
