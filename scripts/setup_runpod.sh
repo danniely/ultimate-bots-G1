@@ -8,7 +8,8 @@ VENV_PATH="/opt/env_isaaclab"
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
   build-essential ca-certificates cmake curl git-lfs libgl1 libglib2.0-0 libx11-6 libxext6 \
-  libxrender1 libsm6 libxrandr2 libxinerama1 libxcursor1
+  libxrender1 libsm6 libxrandr2 libxinerama1 libxcursor1 libxt6 libglu1-mesa \
+  libvulkan1 vulkan-tools libegl-dev libglvnd0 libglx0
 
 if ! command -v uv >/dev/null 2>&1; then
   curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
@@ -33,7 +34,7 @@ uv pip install --python "${VENV_PATH}/bin/python" \
 
 uv pip install --python "${VENV_PATH}/bin/python" \
   -e "${SONIC_ROOT}/gear_sonic[training]" \
-  "huggingface_hub[cli]" ipykernel
+  "huggingface_hub[cli]" ipykernel open3d vector-quantize-pytorch
 
 "${VENV_PATH}/bin/python" -m ipykernel install --user \
   --name sonic-python311 --display-name "SONIC (Python 3.11)"
