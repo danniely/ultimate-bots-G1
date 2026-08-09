@@ -1,0 +1,15 @@
+.DS_Store
+.venv/
+env_isaaclab/
+wandb/
+logs_rl/
+renders/
+*.log
+
+# NVIDIA's source checkout and local caches are dependencies, not project files.
+GR00T-WholeBodyControl/
+cache/
+
+# Track only deliberately selected model artifacts through Git LFS.
+checkpoints/intermediate/
+

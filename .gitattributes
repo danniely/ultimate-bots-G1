@@ -1,0 +1,4 @@
+checkpoints/final/*.pt filter=lfs diff=lfs merge=lfs -text
+exports/*.onnx filter=lfs diff=lfs merge=lfs -text
+videos/*.mp4 filter=lfs diff=lfs merge=lfs -text
+
