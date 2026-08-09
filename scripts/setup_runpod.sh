@@ -7,10 +7,12 @@ VENV_PATH="/workspace/env_isaaclab"
 
 apt-get update -qq
 DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
-  build-essential cmake git-lfs libgl1 libglib2.0-0 libx11-6 libxext6 \
+  build-essential ca-certificates cmake curl git-lfs libgl1 libglib2.0-0 libx11-6 libxext6 \
   libxrender1 libsm6 libxrandr2 libxinerama1 libxcursor1
 
-python -m pip install --upgrade uv
+if ! command -v uv >/dev/null 2>&1; then
+  curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
+fi
 uv python install 3.11
 
 if [[ ! -x "${VENV_PATH}/bin/python" ]]; then
@@ -27,10 +29,12 @@ uv pip install --python "${VENV_PATH}/bin/python" \
 
 uv pip install --python "${VENV_PATH}/bin/python" \
   -e "${SONIC_ROOT}/gear_sonic[training]" \
-  "huggingface_hub[cli]"
+  "huggingface_hub[cli]" ipykernel
+
+"${VENV_PATH}/bin/python" -m ipykernel install --user \
+  --name sonic-python311 --display-name "SONIC (Python 3.11)"
 
 git -C "${PROJECT_ROOT}" lfs install
 
 "${VENV_PATH}/bin/python" -c \
   "import torch; import isaaclab; print('torch', torch.__version__, 'cuda', torch.cuda.is_available()); print('isaaclab import OK')"
-
