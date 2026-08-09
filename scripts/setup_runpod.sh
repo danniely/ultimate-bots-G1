@@ -19,6 +19,10 @@ if [[ ! -x "${VENV_PATH}/bin/python" ]]; then
   uv venv --python 3.11 "${VENV_PATH}"
 fi
 
+uv pip install --python "${VENV_PATH}/bin/python" setuptools==80.9.0 wheel
+uv pip install --python "${VENV_PATH}/bin/python" \
+  flatdict==4.0.1 --no-build-isolation
+
 uv pip install --python "${VENV_PATH}/bin/python" \
   "isaaclab[isaacsim,all]==2.3.0" \
   --extra-index-url https://pypi.nvidia.com
