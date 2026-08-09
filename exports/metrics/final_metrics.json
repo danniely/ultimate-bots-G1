@@ -1,0 +1,22 @@
+{
+  "run": "sonic_release_test-20260809_074813",
+  "motion": "s_batido_test.pkl",
+  "checkpoint": "checkpoints/final/s_batido_sonic_step_002000.pt",
+  "num_environments": 512,
+  "steps_per_environment_per_iteration": 24,
+  "learning_iterations": 2000,
+  "total_episodes": 1024000,
+  "total_timesteps": 24576000,
+  "training_seconds": 9544.61,
+  "final_metrics": {
+    "mean_reward": 2.86658,
+    "mean_episode_length": 44.17,
+    "anchor_position_error": 0.1910,
+    "anchor_rotation_error": 0.1907,
+    "body_position_error": 0.1105,
+    "body_rotation_error": 0.3314,
+    "joint_position_error": 0.1823,
+    "foot_position_termination_rate": 0.1090,
+    "end_effector_position_termination_rate": 0.8598
+  }
+}

@@ -5,6 +5,7 @@ wandb/
 logs_rl/
 renders/
 *.log
+!exports/metrics/*.log
 
 # NVIDIA's source checkout and local caches are dependencies, not project files.
 GR00T-WholeBodyControl/
