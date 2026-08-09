@@ -1,0 +1,7 @@
+Metadata for: s_batido_test
+==============================
+
+Body part indexes:
+[ 0]
+
+Total timesteps: 81

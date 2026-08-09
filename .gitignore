@@ -9,7 +9,7 @@ renders/
 # NVIDIA's source checkout and local caches are dependencies, not project files.
 GR00T-WholeBodyControl/
 cache/
+data/motion_lib/
 
 # Track only deliberately selected model artifacts through Git LFS.
 checkpoints/intermediate/
-
