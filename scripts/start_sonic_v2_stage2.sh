@@ -6,7 +6,11 @@ PROJECT_ROOT="${PROJECT_ROOT:-/workspace/ultimate-bots-G1}"
 PYTHON="${PYTHON:-/opt/env_isaaclab/bin/python}"
 : "${CHECKPOINT:?Set CHECKPOINT to the selected v2 stage1 checkpoint}"
 MOTION_FILE="${MOTION_FILE:-${PROJECT_ROOT}/data/motion_lib/s_batido_test.pkl}"
-OUTPUT_DIR="${PROJECT_ROOT}/exports/v2/stage2"
+NUM_ENVS="${NUM_ENVS:-512}"
+ITERATIONS="${ITERATIONS:-1000}"
+SAVE_INTERVAL="${SAVE_INTERVAL:-100}"
+EXPERIMENT_NAME="${EXPERIMENT_NAME:-s_batido_v2_stage2}"
+OUTPUT_DIR="${OUTPUT_DIR:-${PROJECT_ROOT}/exports/v2/stage2}"
 LOG_FILE="${OUTPUT_DIR}/train.log"
 
 source "${PROJECT_ROOT}/scripts/v2_reward_overrides.sh"
@@ -20,12 +24,12 @@ export PYTHONPATH="${PROJECT_ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
 "${PYTHON}" gear_sonic/train_agent_trl.py \
   +exp=manager/universal_token/all_modes/sonic_release \
   +checkpoint="${CHECKPOINT}" \
-  num_envs=512 \
+  num_envs="${NUM_ENVS}" \
   headless=True \
-  ++experiment_name=s_batido_v2_stage2 \
+  ++experiment_name="${EXPERIMENT_NAME}" \
   ++resume=false \
-  ++algo.config.num_learning_iterations=1000 \
-  ++algo.config.save_interval=100 \
+  ++algo.config.num_learning_iterations="${ITERATIONS}" \
+  ++algo.config.save_interval="${SAVE_INTERVAL}" \
   ++algo.config.actor_learning_rate=5.0e-6 \
   ++algo.config.adaptive_lr_min=1.0e-6 \
   ++algo.config.adaptive_lr_max=2.0e-5 \
