@@ -1,0 +1,72 @@
+version: v2
+initial_policy: checkpoints/v1/s_batido_sonic_v1_step_002000.pt
+optimizer: fresh
+motion_frames: 81
+phases:
+  support: [0, 24]
+  takeoff: [25, 40]
+  airborne_highlight: [41, 69]
+  landing: [70, 80]
+
+base_rewards:
+  description: Keep the complete v1 SONIC tracking reward set.
+  unchanged: true
+
+phase_bonuses:
+  support_contact:
+    weight: 0.5
+    objective: Maintain at least one wrist and one ankle ground contact.
+  takeoff_contact:
+    weight: 0.5
+    objective: Preserve support while producing takeoff impulse.
+  takeoff_pelvis_vertical_velocity:
+    weight: 2.0
+    std: 0.35
+    objective: Match reference upward pelvis velocity before flight.
+  airborne_right_leg_position:
+    weight: 2.0
+    std: 0.18
+    bodies: [right_hip_roll_link, right_knee_link, right_ankle_roll_link]
+  airborne_right_leg_orientation:
+    weight: 1.0
+    std: 0.3
+    bodies: [right_hip_roll_link, right_knee_link, right_ankle_roll_link]
+  airborne_right_leg_joint_pose:
+    weight: 1.0
+    std: 0.25
+    joints:
+      - right_hip_pitch_joint
+      - right_hip_roll_joint
+      - right_hip_yaw_joint
+      - right_knee_joint
+      - right_ankle_pitch_joint
+      - right_ankle_roll_joint
+  airborne_pelvis_orientation:
+    weight: 1.0
+    std: 0.3
+  landing_pelvis_tracking:
+    weight: 0.5
+    std: 0.25
+
+curriculum:
+  stage1:
+    iterations: 1000
+    source: v1 checkpoint
+    randomization: disabled
+    endpoint_terminations: disabled
+    purpose: Learn takeoff and airborne highlight without early truncation.
+  stage2:
+    iterations: 1000
+    source: best stage1 checkpoint
+    randomization: restored
+    endpoint_terminations: restored
+    purpose: Make the new behavior robust under the normal evaluation rules.
+
+success_metrics:
+  - full_motion_completion_rate
+  - takeoff_pelvis_vertical_velocity
+  - peak_right_foot_height
+  - airborne_right_leg_position_error
+  - airborne_pelvis_orientation_error
+  - endpoint_termination_rate
+  - torque_saturation_rate

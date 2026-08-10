@@ -47,3 +47,21 @@ RUN_ID=after_reward_v2 \
 CHECKPOINT=/workspace/ultimate-bots-G1/checkpoints/final/s_batido_sonic_step_002000.pt \
 bash /workspace/ultimate-bots-G1/scripts/run_sonic_eval_debug.sh
 ```
+
+## s_batido v2 curriculum
+
+The original 2,000-iteration result is frozen under `checkpoints/v1/`. Version
+2 starts from those policy and critic weights with a fresh optimizer and lower
+learning rate; it does not restart from the released SONIC checkpoint.
+
+The v2 reward plan is recorded in `experiments/v2/reward_plan.yaml`. Stage 1
+temporarily removes endpoint terminations and startup physics randomization so
+the policy can experience the takeoff and airborne highlight. Stage 2 restores
+the normal termination and randomization rules for robustness.
+
+```bash
+bash /workspace/ultimate-bots-G1/scripts/start_sonic_v2_stage1.sh
+
+CHECKPOINT=/path/to/stage1/model_step_001000.pt \
+bash /workspace/ultimate-bots-G1/scripts/start_sonic_v2_stage2.sh
+```
