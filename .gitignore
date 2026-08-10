@@ -8,6 +8,9 @@ logs_rl/
 renders/
 *.log
 !exports/metrics/*.log
+!checkpoints/v2/**/*.log
+!exports/v2/**/*.log
+!exports/evaluations/**/*.log
 
 # NVIDIA's source checkout and local caches are dependencies, not project files.
 GR00T-WholeBodyControl/
