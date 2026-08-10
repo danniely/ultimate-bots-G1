@@ -1,4 +1,6 @@
 .DS_Store
+__pycache__/
+*.py[cod]
 .venv/
 env_isaaclab/
 wandb/

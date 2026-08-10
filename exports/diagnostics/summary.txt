@@ -1,0 +1,11 @@
+s_batido diagnostics
+=====================
+Final iteration: 2000
+Final mean reward: 2.86658
+Final mean episode: 0.883 s / 1.620 s
+Final endpoint termination: 85.98%
+Final foot termination: 10.90%
+Reference right hip roll range: -50.1 to 26.8 deg
+Reference right knee range: 37.7 to 104.3 deg
+Reference max joint speed: 50.11 rad/s
+Actual-vs-reference joint curves unavailable: the prior evaluation saved video only.
