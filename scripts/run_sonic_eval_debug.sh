@@ -8,6 +8,7 @@ PYTHON="${PYTHON:-/opt/env_isaaclab/bin/python}"
 CHECKPOINT="${CHECKPOINT:-${PROJECT_ROOT}/checkpoints/final/s_batido_sonic_step_002000.pt}"
 MOTION_FILE="${MOTION_FILE:-${PROJECT_ROOT}/data/motion_lib/s_batido_test.pkl}"
 RUN_ID="${RUN_ID:-$(date -u +%Y%m%dT%H%M%SZ)_step2000}"
+FULL_MOTION="${FULL_MOTION:-false}"
 RUN_ROOT="${PROJECT_ROOT}/exports/evaluations/${RUN_ID}"
 VIDEO_DIR="${RUN_ROOT}/video"
 FRAME_DIR="${RUN_ROOT}/frames"
@@ -29,6 +30,25 @@ if [[ ! -f "$(dirname "${CHECKPOINT}")/config.yaml" && \
   ln -sf "${CHECKPOINT}" "${CHECKPOINT_CONTEXT}/$(basename "${CHECKPOINT}")"
   cp "${TRAINING_CONFIG}" "${CHECKPOINT_CONTEXT}/config.yaml"
   CHECKPOINT="${CHECKPOINT_CONTEXT}/$(basename "${CHECKPOINT}")"
+fi
+
+CHECKPOINT_CONFIG="$(dirname "${CHECKPOINT}")/config.yaml"
+EVAL_OVERRIDES=()
+if [[ "${FULL_MOTION}" == "true" ]]; then
+  # Keep the motion-library timeout so the rollout ends at the final reference
+  # frame, but do not stop early when tracking thresholds are exceeded.  This
+  # produces a diagnostic full-motion video; it does not count as a successful
+  # rollout after the first would-be termination frame.
+  EVAL_OVERRIDES+=(
+    '~manager_env.terminations.anchor_pos'
+    '~manager_env.terminations.anchor_ori_full'
+  )
+  if grep -q '^    ee_body_pos:' "${CHECKPOINT_CONFIG}"; then
+    EVAL_OVERRIDES+=('~manager_env.terminations.ee_body_pos')
+  fi
+  if grep -q '^    foot_pos_xyz:' "${CHECKPOINT_CONFIG}"; then
+    EVAL_OVERRIDES+=('~manager_env.terminations.foot_pos_xyz')
+  fi
 fi
 
 cd "${SONIC_ROOT}"
@@ -55,4 +75,5 @@ exec "${PYTHON}" gear_sonic/eval_agent_trl.py \
   ++manager_env.recorders.frame_diagnostics.flush_interval=10 \
   ++manager_env.commands.motion.motion_lib_cfg.motion_file="${MOTION_FILE}" \
   ++manager_env.commands.motion.motion_lib_cfg.smpl_motion_file=dummy \
+  "${EVAL_OVERRIDES[@]}" \
   2>&1 | tee "${RUN_ROOT}/eval.log"
