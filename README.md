@@ -30,6 +30,19 @@ on the RunPod volume and are not committed.
 The Python environment lives on the faster container disk because Isaac Sim
 contains many small files. Re-run the setup script after recreating a Pod.
 
+### Nebius GPU VM
+
+On a Nebius Ubuntu VM created from an NVIDIA GPU image, clone this repository
+to `/srv/sonic/ultimate-bots-G1`, then run:
+
+```bash
+bash /srv/sonic/ultimate-bots-G1/scripts/setup_nebius.sh
+```
+
+The Nebius installer keeps the repository, NVIDIA checkout, and Python
+environment together on the VM boot disk under `/srv/sonic`. Stopping the VM
+stops compute charges while the disk remains billable and persistent.
+
 ## Frame-level evaluation diagnostics
 
 Use `scripts/run_sonic_eval_debug.sh` for evaluation runs that need debugging.
