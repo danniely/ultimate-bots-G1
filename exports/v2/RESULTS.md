@@ -46,6 +46,26 @@ Lower MPJPE and distance values are better. These are single recorded rollouts, 
 - Stage 2 video and frame telemetry: `../evaluations/v2_stage2_final/`
 - Training logs: `stage1/train.log` and `stage2/train.log`
 
+## MuJoCo cross-simulator render
+
+The Stage 1 telemetry was rendered with Unitree's official 29-DoF G1 MJCF in
+two modes:
+
+- `v2_stage1_mujoco_kinematic.mp4`: recorded Isaac joint and reconstructed
+  pelvis poses placed into the MuJoCo model frame by frame.
+- `v2_stage1_mujoco_openloop_torque.mp4`: recorded Isaac torques replayed from
+  the same initial state through MuJoCo physics without policy feedback.
+- `v2_stage1_mujoco_comparison.mp4`: side-by-side comparison, with kinematic
+  replay on the left and open-loop torque physics on the right.
+
+The kinematic render reaches the airborne highlight. The open-loop torque
+rollout falls almost immediately, showing a significant simulator/control
+mismatch. It is not a closed-loop SONIC policy evaluation: that requires a
+MuJoCo observation adapter and a portable policy export.
+
+The reproducible renderer is `scripts/render_mujoco_trajectory.py`; pass the
+official Unitree `unitree_robots/g1/scene_29dof.xml` file with `--scene`.
+
 ## Checkpoint integrity
 
 | Checkpoint | SHA-256 | Size |
