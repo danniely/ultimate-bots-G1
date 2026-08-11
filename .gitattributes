@@ -4,4 +4,5 @@ checkpoints/v2/*.pt filter=lfs diff=lfs merge=lfs -text
 checkpoints/v2/**/*.pt filter=lfs diff=lfs merge=lfs -text
 exports/*.onnx filter=lfs diff=lfs merge=lfs -text
 videos/*.mp4 filter=lfs diff=lfs merge=lfs -text
+videos/v2/*.mp4 filter=lfs diff=lfs merge=lfs -text
 exports/evaluations/**/video/*.mp4 filter=lfs diff=lfs merge=lfs -text
