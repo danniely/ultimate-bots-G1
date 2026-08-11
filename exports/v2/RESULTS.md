@@ -38,6 +38,14 @@ Both checkpoints are preserved because Stage 2 remains useful as a stricter-phys
 
 Lower MPJPE and distance values are better. These are single recorded rollouts, and Stage 2 uses the restored strict termination and physics-randomization settings, so the values should be treated as diagnostic evidence rather than a statistically complete benchmark.
 
+### RunPod Isaac reproducibility rerender
+
+Stage 1 was rerendered on a newly migrated RunPod A40 with Isaac Sim under
+`exports/evaluations/v2_stage1_isaac_rerender/`. It reproduced the original
+69/81-frame progress and all reported evaluation metrics exactly. The frame
+telemetry CSV and NPZ files are byte-for-byte identical to
+`v2_stage1_final`; the MP4 was freshly encoded at 1920x1088, 50 fps.
+
 ## Artifact map
 
 - Stage 1 checkpoint: `../../checkpoints/v2/stage1/s_batido_v2_stage1_step_001000.pt`
