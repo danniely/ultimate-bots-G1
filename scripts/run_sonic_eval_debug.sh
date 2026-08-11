@@ -33,22 +33,33 @@ if [[ ! -f "$(dirname "${CHECKPOINT}")/config.yaml" && \
 fi
 
 CHECKPOINT_CONFIG="$(dirname "${CHECKPOINT}")/config.yaml"
-EVAL_OVERRIDES=()
 if [[ "${FULL_MOTION}" == "true" ]]; then
   # Keep the motion-library timeout so the rollout ends at the final reference
   # frame, but do not stop early when tracking thresholds are exceeded.  This
   # produces a diagnostic full-motion video; it does not count as a successful
   # rollout after the first would-be termination frame.
-  EVAL_OVERRIDES+=(
-    '~manager_env.terminations.anchor_pos'
-    '~manager_env.terminations.anchor_ori_full'
-  )
-  if grep -q '^    ee_body_pos:' "${CHECKPOINT_CONFIG}"; then
-    EVAL_OVERRIDES+=('~manager_env.terminations.ee_body_pos')
-  fi
-  if grep -q '^    foot_pos_xyz:' "${CHECKPOINT_CONFIG}"; then
-    EVAL_OVERRIDES+=('~manager_env.terminations.foot_pos_xyz')
-  fi
+  FULL_MOTION_CONTEXT="${RUN_ROOT}/full_motion_checkpoint_context"
+  mkdir -p "${FULL_MOTION_CONTEXT}"
+  ln -sf "${CHECKPOINT}" "${FULL_MOTION_CONTEXT}/$(basename "${CHECKPOINT}")"
+  "${PYTHON}" - "${CHECKPOINT_CONFIG}" "${FULL_MOTION_CONTEXT}/config.yaml" <<'PY'
+import sys
+import yaml
+
+source, destination = sys.argv[1:]
+with open(source, "r", encoding="utf-8") as stream:
+    config = yaml.safe_load(stream)
+
+terminations = config["manager_env"]["terminations"]
+config["manager_env"]["terminations"] = {
+    key: value
+    for key, value in terminations.items()
+    if key in {"_target_", "time_out"}
+}
+
+with open(destination, "w", encoding="utf-8") as stream:
+    yaml.safe_dump(config, stream, sort_keys=False)
+PY
+  CHECKPOINT="${FULL_MOTION_CONTEXT}/$(basename "${CHECKPOINT}")"
 fi
 
 cd "${SONIC_ROOT}"
@@ -75,5 +86,4 @@ exec "${PYTHON}" gear_sonic/eval_agent_trl.py \
   ++manager_env.recorders.frame_diagnostics.flush_interval=10 \
   ++manager_env.commands.motion.motion_lib_cfg.motion_file="${MOTION_FILE}" \
   ++manager_env.commands.motion.motion_lib_cfg.smpl_motion_file=dummy \
-  "${EVAL_OVERRIDES[@]}" \
   2>&1 | tee "${RUN_ROOT}/eval.log"
