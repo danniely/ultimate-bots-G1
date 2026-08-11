@@ -34,6 +34,27 @@ if ! command -v nvidia-smi >/dev/null 2>&1; then
 fi
 nvidia-smi
 
+# Nebius CUDA images may contain only the compute portion of the NVIDIA driver.
+# Isaac Sim headless rendering also needs the matching Vulkan/OpenGL ICD. The
+# CUDA repository is pinned below normal priority, so request exact versions.
+if ! vulkaninfo --summary 2>/dev/null | grep -q 'deviceName.*NVIDIA'; then
+  NVIDIA_COMPUTE_PACKAGE="$(dpkg-query -W -f='${binary:Package}\n' 'libnvidia-compute-*' 2>/dev/null | head -n 1)"
+  NVIDIA_BRANCH="${NVIDIA_COMPUTE_PACKAGE##*-}"
+  NVIDIA_BRANCH="${NVIDIA_BRANCH%%:*}"
+  NVIDIA_DRIVER_VERSION="$(dpkg-query -W -f='${Version}' "${NVIDIA_COMPUTE_PACKAGE}")"
+  latest_version() {
+    apt-cache madison "$1" | awk 'NR == 1 { print $3 }'
+  }
+  "${SUDO[@]}" env DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    "libnvidia-egl-gbm1=$(latest_version libnvidia-egl-gbm1)" \
+    "libnvidia-egl-wayland1=$(latest_version libnvidia-egl-wayland1)" \
+    "libnvidia-egl-xcb1=$(latest_version libnvidia-egl-xcb1)" \
+    "libnvidia-egl-xlib1=$(latest_version libnvidia-egl-xlib1)" \
+    "libnvidia-gl-${NVIDIA_BRANCH}=${NVIDIA_DRIVER_VERSION}"
+fi
+
+vulkaninfo --summary 2>/dev/null | grep -A8 -E 'GPU[0-9]+:' | head -n 20
+
 if ! command -v uv >/dev/null 2>&1; then
   curl -LsSf https://astral.sh/uv/install.sh | \
     "${SUDO[@]}" env UV_INSTALL_DIR=/usr/local/bin sh
