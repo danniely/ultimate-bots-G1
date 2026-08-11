@@ -1,11 +1,11 @@
-"""Phase-specific reward terms for the s_batido v2 fine-tuning run."""
+"""Phase-specific reward terms for the s_batido fine-tuning runs."""
 
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 from isaaclab.utils import configclass
-from isaaclab.utils.math import quat_error_magnitude
+from isaaclab.utils.math import quat_apply, quat_error_magnitude
 import torch
 
 from gear_sonic.envs.manager_env.mdp.commands import TrackingCommand, _get_body_indexes
@@ -27,6 +27,16 @@ class V2RewardsCfg(RewardsCfg):
     airborne_right_leg_joint_pose = None
     airborne_pelvis_orientation = None
     landing_pelvis_tracking = None
+
+
+@configclass
+class V3RewardsCfg(V2RewardsCfg):
+    """v2 highlight rewards plus landing and balance-recovery objectives."""
+
+    recovery_double_foot_contact = None
+    recovery_upright = None
+    recovery_low_base_velocity = None
+    recovery_center_of_support = None
 
 
 def _phase_mask(
@@ -159,6 +169,79 @@ def phase_anchor_position_tracking(
     command: TrackingCommand = env.command_manager.get_term(command_name)
     diff = command.anchor_pos_w - command.robot_anchor_pos_w
     error = torch.square(diff).sum(dim=-1)
+    return _phase_mask(command, start_frame, end_frame) * torch.exp(
+        -error / (std * std)
+    )
+
+
+def phase_double_foot_contact(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    ankle_body_names: list[str],
+    min_force: float = 40.0,
+) -> torch.Tensor:
+    """Reward simultaneous, non-impactful contact at both ankles."""
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    sensor = env.scene["contact_forces"]
+    ankle_ids = [sensor.body_names.index(name) for name in ankle_body_names]
+    forces = torch.linalg.norm(sensor.data.net_forces_w[:, ankle_ids], dim=-1)
+    contact = torch.clamp(forces / min_force, 0.0, 1.0)
+    return _phase_mask(command, start_frame, end_frame) * contact.min(dim=-1).values
+
+
+def phase_upright_anchor(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    std: float = 0.35,
+) -> torch.Tensor:
+    """Reward the pelvis local up axis aligning with world up."""
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    local_up = torch.zeros_like(command.robot_anchor_pos_w)
+    local_up[:, 2] = 1.0
+    world_up = quat_apply(command.robot_anchor_quat_w, local_up)
+    tilt_error = torch.square(world_up[:, :2]).sum(dim=-1)
+    return _phase_mask(command, start_frame, end_frame) * torch.exp(
+        -tilt_error / (std * std)
+    )
+
+
+def phase_low_base_velocity(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    linear_std: float = 0.35,
+    angular_std: float = 0.7,
+) -> torch.Tensor:
+    """Reward settling instead of continuing to slide or rotate after landing."""
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    linear_speed_sq = torch.square(command.robot_body_lin_vel_w[:, 0]).sum(dim=-1)
+    angular_speed_sq = torch.square(command.robot_body_ang_vel_w[:, 0]).sum(dim=-1)
+    linear_score = torch.exp(-linear_speed_sq / (linear_std * linear_std))
+    angular_score = torch.exp(-angular_speed_sq / (angular_std * angular_std))
+    return _phase_mask(command, start_frame, end_frame) * 0.5 * (
+        linear_score + angular_score
+    )
+
+
+def phase_center_over_feet(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    ankle_body_names: list[str],
+    std: float = 0.2,
+) -> torch.Tensor:
+    """Reward the pelvis projection staying near the midpoint of both feet."""
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    ankle_ids = _get_body_indexes(command, ankle_body_names)
+    feet_midpoint_xy = command.robot_body_pos_w[:, ankle_ids, :2].mean(dim=1)
+    pelvis_xy = command.robot_anchor_pos_w[:, :2]
+    error = torch.square(pelvis_xy - feet_midpoint_xy).sum(dim=-1)
     return _phase_mask(command, start_frame, end_frame) * torch.exp(
         -error / (std * std)
     )

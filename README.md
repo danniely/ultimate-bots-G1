@@ -78,3 +78,25 @@ bash /workspace/ultimate-bots-G1/scripts/start_sonic_v2_stage1.sh
 CHECKPOINT=/path/to/stage1/model_step_001000.pt \
 bash /workspace/ultimate-bots-G1/scripts/start_sonic_v2_stage2.sh
 ```
+
+## v3 landing recovery
+
+v3 starts from the selected v2 Stage 1 highlight checkpoint. It keeps the
+original 81-frame move and appends a 100-frame recovery target: one second to
+return to a stable upright stance and one second to hold it. Recovery-specific
+rewards cover two-foot contact, upright pelvis, low base velocity, and keeping
+the pelvis projection centered over the feet.
+
+On Nebius, after converting the generated CSV bundle to
+`data/motion_lib/s_batido_v3_recovery.pkl`, run a smoke test first:
+
+```bash
+NUM_ENVS=32 ITERATIONS=2 SAVE_INTERVAL=1 \
+EXPERIMENT_NAME=s_batido_v3_smoke \
+OUTPUT_DIR=/srv/sonic/ultimate-bots-G1/exports/v3/smoke \
+bash /srv/sonic/ultimate-bots-G1/scripts/start_sonic_v3.sh
+```
+
+The full run defaults to 512 environments and 750 iterations with a lower
+learning rate than v2 to reduce catastrophic forgetting of the airborne
+highlight.

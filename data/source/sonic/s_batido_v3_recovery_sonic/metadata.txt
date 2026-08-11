@@ -1,0 +1,7 @@
+Metadata for: s_batido_v3_recovery
+========================================
+
+Body part indexes:
+[ 0]
+
+Total timesteps: 181
