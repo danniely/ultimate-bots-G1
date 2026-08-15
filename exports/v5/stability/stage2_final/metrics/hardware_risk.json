@@ -1,0 +1,48 @@
+{
+  "contact_force_n": {
+    "feet_ankles": {
+      "mean": 215.1111036600811,
+      "p99": 457.04389648437507,
+      "peak": 519.0471249253638
+    },
+    "other": {
+      "mean": 0.0,
+      "p99": 0.0,
+      "peak": 0.0
+    },
+    "wrist_hand": {
+      "mean": 1301.6440149950342,
+      "p99": 1720.5116956276115,
+      "peak": 1739.055253184255
+    }
+  },
+  "fps": 50.0,
+  "frames": 181,
+  "joint_acceleration_rad_s2": {
+    "p99_abs": 122.98902216553802,
+    "peak_abs": 733.0584764480591
+  },
+  "joint_velocity_rad_s": {
+    "p99_abs": 6.459516391754102,
+    "peak": {
+      "frame": 39,
+      "joint": "right_ankle_pitch_joint",
+      "value": 21.26496124267578
+    },
+    "rms": 1.7181486427953938
+  },
+  "last_motion_frame": 180,
+  "source": "exports/evaluations/v5_stage2_final_full/frames/env_000000_frames.csv",
+  "termination_frame_counts": {
+    "time_out": 0
+  },
+  "torque_nm": {
+    "p99_abs": 49.0411270141599,
+    "peak": {
+      "frame": 21,
+      "joint": "right_knee_joint",
+      "value": 116.22362518310547
+    },
+    "rms": 12.00047723508529
+  }
+}

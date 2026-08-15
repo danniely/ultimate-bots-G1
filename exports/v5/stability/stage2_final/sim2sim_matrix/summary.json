@@ -1,0 +1,117 @@
+{
+  "runs": 10,
+  "settled_runs": 0,
+  "criteria": {
+    "consecutive_samples": 25,
+    "min_upright": 0.95,
+    "max_joint_speed_rad_s": 2.5,
+    "max_base_angular_speed_rad_s": 0.6
+  },
+  "upright_min": {
+    "mean": 0.9251175109550728,
+    "min": 0.27357670912554166,
+    "max": 0.9986791076583412
+  },
+  "joint_speed_peak_rad_s": {
+    "mean": 22.8700261116,
+    "min": 8.875088692,
+    "max": 28.879917145
+  },
+  "base_angular_speed_peak_rad_s": {
+    "mean": 2.4547856942578035,
+    "min": 1.2397773981938267,
+    "max": 4.070370265310708
+  },
+  "runs_detail": [
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.27357670912554166,
+      "joint_speed_peak_rad_s": 8.875088692,
+      "base_angular_speed_peak_rad_s": 4.070370265310708,
+      "reason": "timeout",
+      "run": "run_01"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.997299173214968,
+      "joint_speed_peak_rad_s": 23.100757599,
+      "base_angular_speed_peak_rad_s": 1.8354192394410305,
+      "reason": "timeout",
+      "run": "run_02"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9964042896669686,
+      "joint_speed_peak_rad_s": 24.881502151,
+      "base_angular_speed_peak_rad_s": 1.9485405922838661,
+      "reason": "timeout",
+      "run": "run_03"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9981172942732548,
+      "joint_speed_peak_rad_s": 28.879917145,
+      "base_angular_speed_peak_rad_s": 2.513926454041471,
+      "reason": "timeout",
+      "run": "run_04"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9976987896873712,
+      "joint_speed_peak_rad_s": 26.405761719,
+      "base_angular_speed_peak_rad_s": 2.087807188658123,
+      "reason": "timeout",
+      "run": "run_05"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9965888084369482,
+      "joint_speed_peak_rad_s": 25.711053848,
+      "base_angular_speed_peak_rad_s": 2.87294260174531,
+      "reason": "timeout",
+      "run": "run_06"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9983053232317555,
+      "joint_speed_peak_rad_s": 17.916027069,
+      "base_angular_speed_peak_rad_s": 1.2397773981938267,
+      "reason": "timeout",
+      "run": "run_07"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9971329045625155,
+      "joint_speed_peak_rad_s": 23.226869583,
+      "base_angular_speed_peak_rad_s": 3.070512248558612,
+      "reason": "timeout",
+      "run": "run_08"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9986791076583412,
+      "joint_speed_peak_rad_s": 26.381160736,
+      "base_angular_speed_peak_rad_s": 2.472666684130947,
+      "reason": "timeout",
+      "run": "run_09"
+    },
+    {
+      "settled": false,
+      "samples": 25,
+      "upright_min": 0.9973727096930631,
+      "joint_speed_peak_rad_s": 23.322122574,
+      "base_angular_speed_peak_rad_s": 2.4358942702141375,
+      "reason": "timeout",
+      "run": "run_10"
+    }
+  ]
+}
