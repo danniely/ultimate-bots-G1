@@ -2,6 +2,7 @@
 set -uo pipefail
 
 RUNS="${RUNS:-10}"
+INIT_TIMEOUT="${INIT_TIMEOUT:-180}"
 PROJECT="${PROJECT:-/srv/sonic/ultimate-bots-G1}"
 OFFICIAL="${OFFICIAL:-/srv/sonic/GR00T-WholeBodyControl}"
 OUT="${OUT:-$PROJECT/exports/v3/realready/final/sim2sim_matrix_settled}"
@@ -37,7 +38,7 @@ for run in $(seq -w 1 "$RUNS"); do
     "bash -lc 'export LD_LIBRARY_PATH=$TRT_LIB:$ORT_LIB:\$LD_LIBRARY_PATH; cd $OFFICIAL/gear_sonic_deploy; $DEPLOY lo $MODEL_DIR/model_step_${MODEL_STEP}_decoder.onnx $REFERENCE --obs-config $MODEL_DIR/observation_config.yaml --encoder-file $MODEL_DIR/model_step_${MODEL_STEP}_encoder.onnx --input-type keyboard --output-type zmq --disable-crc-check --enable-csv-logs --logs-dir $run_dir/logs 2>&1 | tee $run_dir/deploy.log'"
 
   ready=0
-  for _ in $(seq 1 30); do
+  for _ in $(seq 1 "$INIT_TIMEOUT"); do
     if grep -q "Init Done" "$run_dir/deploy.log"; then ready=1; break; fi
     tmux has-session -t g1_deploy 2>/dev/null || break
     sleep 1

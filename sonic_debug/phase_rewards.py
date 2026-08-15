@@ -53,6 +53,8 @@ class V3RobustRewardsCfg(V3RewardsCfg):
 class V5StabilityRewardsCfg(V3RobustRewardsCfg):
     """Real-robot stability terms added after the V4 sim2sim audit."""
 
+    initial_upright = None
+    initial_low_base_velocity = None
     knee_torque_reserve = None
     recovery_knee_torque_reserve = None
     late_recovery_upright = None

@@ -6,6 +6,23 @@ V5_STABILITY_REWARD_OVERRIDES=(
   '++manager_env.rewards._target_=sonic_debug.phase_rewards.V5StabilityRewardsCfg'
   "${V3_ROBUST_REWARD_OVERRIDES[@]:1}"
 
+  '++manager_env.rewards.initial_upright._target_=isaaclab.managers.RewardTermCfg'
+  '++manager_env.rewards.initial_upright.func=sonic_debug.phase_rewards:phase_upright_anchor'
+  '++manager_env.rewards.initial_upright.weight=2.0'
+  '++manager_env.rewards.initial_upright.params.command_name=motion'
+  '++manager_env.rewards.initial_upright.params.start_frame=0'
+  '++manager_env.rewards.initial_upright.params.end_frame=20'
+  '++manager_env.rewards.initial_upright.params.std=0.20'
+
+  '++manager_env.rewards.initial_low_base_velocity._target_=isaaclab.managers.RewardTermCfg'
+  '++manager_env.rewards.initial_low_base_velocity.func=sonic_debug.phase_rewards:phase_low_base_velocity'
+  '++manager_env.rewards.initial_low_base_velocity.weight=1.0'
+  '++manager_env.rewards.initial_low_base_velocity.params.command_name=motion'
+  '++manager_env.rewards.initial_low_base_velocity.params.start_frame=0'
+  '++manager_env.rewards.initial_low_base_velocity.params.end_frame=20'
+  '++manager_env.rewards.initial_low_base_velocity.params.linear_std=0.20'
+  '++manager_env.rewards.initial_low_base_velocity.params.angular_std=0.40'
+
   '++manager_env.rewards.knee_torque_reserve._target_=isaaclab.managers.RewardTermCfg'
   '++manager_env.rewards.knee_torque_reserve.func=sonic_debug.phase_rewards:phase_joint_torque_overload'
   '++manager_env.rewards.knee_torque_reserve.weight=-0.03'
