@@ -4,9 +4,10 @@ set -uo pipefail
 RUNS="${RUNS:-10}"
 PROJECT="${PROJECT:-/srv/sonic/ultimate-bots-G1}"
 OFFICIAL="${OFFICIAL:-/srv/sonic/GR00T-WholeBodyControl}"
-OUT="${OUT:-$PROJECT/exports/v3/realready/final/sim2sim_matrix}"
-MODEL_DIR="$PROJECT/exports/v3/realready/final/onnx"
-REFERENCE="reference/s_batido_v3_realready"
+OUT="${OUT:-$PROJECT/exports/v3/realready/final/sim2sim_matrix_settled}"
+MODEL_DIR="${MODEL_DIR:-$PROJECT/exports/v3/realready/final/onnx}"
+MODEL_STEP="${MODEL_STEP:-000100}"
+REFERENCE="${REFERENCE:-reference/s_batido_v3_realready}"
 DEPLOY="$OFFICIAL/gear_sonic_deploy/target/release/g1_deploy_onnx_ref"
 TRT_LIB="/srv/sonic/env_isaaclab/lib/python3.11/site-packages/tensorrt_libs"
 ORT_LIB="/srv/sonic/deps/onnxruntime-linux-x64-1.22.0/lib"
@@ -24,14 +25,16 @@ for run in $(seq -w 1 "$RUNS"); do
   mkdir -p "$run_dir/logs"
   : >"$run_dir/sim.log"
   : >"$run_dir/deploy.log"
+  release_file="$run_dir/release_band"
+  rm -f "$release_file"
   cleanup_children
 
   tmux new-session -d -s sim_loop \
-    "bash -lc 'cd $OFFICIAL; source .venv_sim/bin/activate; PYTHONPATH=\$PWD python $PROJECT/scripts/run_mujoco_headless_release.py --release-after 20 2>&1 | tee $run_dir/sim.log'"
+    "bash -lc 'cd $OFFICIAL; source .venv_sim/bin/activate; PYTHONPATH=\$PWD python $PROJECT/scripts/run_mujoco_headless_release.py --release-after 60 --release-file $release_file 2>&1 | tee $run_dir/sim.log'"
   sleep 6
 
   tmux new-session -d -s g1_deploy \
-    "bash -lc 'export LD_LIBRARY_PATH=$TRT_LIB:$ORT_LIB:\$LD_LIBRARY_PATH; cd $OFFICIAL/gear_sonic_deploy; $DEPLOY lo $MODEL_DIR/model_step_000100_decoder.onnx $REFERENCE --obs-config $MODEL_DIR/observation_config.yaml --encoder-file $MODEL_DIR/model_step_000100_encoder.onnx --input-type keyboard --output-type zmq --disable-crc-check --enable-csv-logs --logs-dir $run_dir/logs 2>&1 | tee $run_dir/deploy.log'"
+    "bash -lc 'export LD_LIBRARY_PATH=$TRT_LIB:$ORT_LIB:\$LD_LIBRARY_PATH; cd $OFFICIAL/gear_sonic_deploy; $DEPLOY lo $MODEL_DIR/model_step_${MODEL_STEP}_decoder.onnx $REFERENCE --obs-config $MODEL_DIR/observation_config.yaml --encoder-file $MODEL_DIR/model_step_${MODEL_STEP}_encoder.onnx --input-type keyboard --output-type zmq --disable-crc-check --enable-csv-logs --logs-dir $run_dir/logs 2>&1 | tee $run_dir/deploy.log'"
 
   ready=0
   for _ in $(seq 1 30); do
@@ -46,12 +49,20 @@ for run in $(seq -w 1 "$RUNS"); do
   fi
 
   tmux send-keys -t g1_deploy "]"
-  for _ in $(seq 1 30); do
-    grep -q "AUTO_RELEASE" "$run_dir/sim.log" && break
-    sleep 1
-  done
-  sleep 2
+  if ! python3 "$PROJECT/scripts/wait_for_sim2sim_settle.py" "$run_dir/logs" \
+      --timeout 25 --consecutive 25 --min-upright 0.95 \
+      --max-joint-speed 2.5 --max-base-angular-speed 0.6 \
+      --output "$run_dir/settle.json"; then
+    echo "run_$run initial_settle_failed" | tee -a "$OUT/progress.log"
+    cleanup_children
+    continue
+  fi
   tmux send-keys -t g1_deploy "T"
+  touch "$release_file"
+  for _ in $(seq 1 10); do
+    grep -q "AUTO_RELEASE" "$run_dir/sim.log" && break
+    sleep 0.1
+  done
 
   completed=0
   for _ in $(seq 1 15); do

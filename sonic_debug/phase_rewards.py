@@ -49,6 +49,16 @@ class V3RobustRewardsCfg(V3RewardsCfg):
     dangerous_body_contact = None
 
 
+@configclass
+class V5StabilityRewardsCfg(V3RobustRewardsCfg):
+    """Real-robot stability terms added after the V4 sim2sim audit."""
+
+    knee_torque_reserve = None
+    recovery_knee_torque_reserve = None
+    late_recovery_upright = None
+    late_recovery_low_base_velocity = None
+
+
 def _phase_mask(
     command: TrackingCommand, start_frame: int, end_frame: int
 ) -> torch.Tensor:
@@ -348,6 +358,32 @@ def phase_joint_velocity_overload(
     command: TrackingCommand = env.command_manager.get_term(command_name)
     peak_speed = env.scene["robot"].data.joint_vel.abs().max(dim=-1).values
     overload = torch.relu(peak_speed / soft_limit - 1.0).square()
+    return _phase_mask(command, start_frame, end_frame) * torch.clamp(
+        overload, max=max_penalty
+    )
+
+
+def phase_joint_torque_overload(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    joint_names: list[str],
+    soft_limit: float,
+    max_penalty: float = 4.0,
+) -> torch.Tensor:
+    """Keep commanded torque below a soft reserve before actuator clipping.
+
+    ``computed_torque`` is the PD/controller request before the simulator clips
+    it to the actuator effort limit.  Penalizing only the excess preserves the
+    torque needed for takeoff while teaching the policy not to depend on the
+    139 Nm knee saturation observed in the official MuJoCo deployment loop.
+    """
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    robot = env.scene["robot"]
+    joint_ids = robot.find_joints(joint_names)[0]
+    peak_torque = robot.data.computed_torque[:, joint_ids].abs().max(dim=-1).values
+    overload = torch.relu(peak_torque / soft_limit - 1.0).square()
     return _phase_mask(command, start_frame, end_frame) * torch.clamp(
         overload, max=max_penalty
     )

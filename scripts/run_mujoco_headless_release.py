@@ -9,6 +9,7 @@ viewer key ``9`` with a timed release of the simulator's elastic safety band.
 from __future__ import annotations
 
 import argparse
+from pathlib import Path
 import threading
 import time
 
@@ -21,6 +22,7 @@ from gear_sonic.utils.mujoco_sim.simulator_factory import SimulatorFactory
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--release-after", type=float, default=8.0)
+    parser.add_argument("--release-file", type=Path)
     args = parser.parse_args()
 
     config = SimLoopConfig(enable_onscreen=False, enable_offscreen=False, verbose=False)
@@ -36,7 +38,12 @@ def main() -> None:
         enable_image_publish=False,
     )
     def release_band() -> None:
-        time.sleep(max(0.0, args.release_after))
+        deadline = time.monotonic() + max(0.0, args.release_after)
+        if args.release_file is not None:
+            while time.monotonic() < deadline and not args.release_file.exists():
+                time.sleep(0.02)
+        else:
+            time.sleep(max(0.0, args.release_after))
         band = wrapper.sim.sim_env.elastic_band
         if band is not None:
             band.enable = False
