@@ -10,7 +10,7 @@ MOTION_FILE="${MOTION_FILE:-${PROJECT_ROOT}/data/motion_lib/s_batido_v3_recovery
 RUN_ID="${RUN_ID:-$(date -u +%Y%m%dT%H%M%SZ)_v3_strict_matrix}"
 SEEDS="${SEEDS:-0 1 2 3 4}"
 PROFILES="${PROFILES:-strict_nominal moderate_randomization official_randomization recovery_push}"
-RUN_ROOT="${PROJECT_ROOT}/exports/v3/robust/evaluations/${RUN_ID}"
+RUN_ROOT="${RUN_ROOT:-${PROJECT_ROOT}/exports/v3/robust/evaluations/${RUN_ID}}"
 CONTEXT_ROOT="${RUN_ROOT}/contexts"
 
 mkdir -p "${RUN_ROOT}"
@@ -46,4 +46,3 @@ done
 
 "${PYTHON}" "${PROJECT_ROOT}/scripts/summarize_v3_strict_matrix.py" \
   --run-root "${RUN_ROOT}"
-

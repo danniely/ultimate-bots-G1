@@ -16,6 +16,10 @@ below 19/20, fine-tuning continues from V4 with:
 - a soft pre-clipping knee torque reserve (115 Nm overall, 105 Nm in recovery);
 - explicit upright and low-velocity rewards over the first 20 motion frames, so
   the deployed controller can hold a settled launch pose before playback;
+- a second stability refinement stage after the first MuJoCo gate exposed
+  persistent ankle/knee oscillation despite an upright torso; this stage extends
+  the launch window to 35 frames and directly penalizes joint speed above
+  2.5 rad/s while strengthening two-foot support and action smoothing;
 - stronger late-recovery upright and low-base-velocity rewards;
 - slightly stronger action-rate smoothing;
 - wider but still moderate friction, joint-zero, COM, mass, and recovery-push

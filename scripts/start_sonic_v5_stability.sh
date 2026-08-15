@@ -68,10 +68,11 @@ export PYTHONPATH="${PROJECT_ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
   ++manager_env.events.push_robot.params.velocity_range.roll='[-0.22,0.22]' \
   ++manager_env.events.push_robot.params.velocity_range.pitch='[-0.22,0.22]' \
   ++manager_env.events.push_robot.params.velocity_range.yaw='[-0.22,0.22]' \
-  manager_env.rewards.action_rate_l2.weight=-0.15 \
+  manager_env.rewards.action_rate_l2.weight=-0.20 \
   "${V5_STABILITY_REWARD_OVERRIDES[@]}" \
   manager_env.rewards.recovery_upright.weight=2.5 \
   manager_env.rewards.recovery_low_base_velocity.weight=1.5 \
   manager_env.rewards.recovery_center_of_support.weight=2.0 \
+  manager_env.rewards.support_contact.weight=1.5 \
   use_wandb=false \
   2>&1 | tee "${LOG_FILE}"

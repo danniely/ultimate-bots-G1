@@ -55,6 +55,7 @@ class V5StabilityRewardsCfg(V3RobustRewardsCfg):
 
     initial_upright = None
     initial_low_base_velocity = None
+    initial_joint_velocity_overload = None
     knee_torque_reserve = None
     recovery_knee_torque_reserve = None
     late_recovery_upright = None
