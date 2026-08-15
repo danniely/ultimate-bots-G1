@@ -39,11 +39,73 @@ class V3RewardsCfg(V2RewardsCfg):
     recovery_center_of_support = None
 
 
+@configclass
+class V3RobustRewardsCfg(V3RewardsCfg):
+    """v3 rewards plus soft hardware-load constraints for sim-to-real."""
+
+    support_contact_overload = None
+    landing_contact_overload = None
+    joint_velocity_overload = None
+    dangerous_body_contact = None
+
+
 def _phase_mask(
     command: TrackingCommand, start_frame: int, end_frame: int
 ) -> torch.Tensor:
     frame = command.motion_start_time_steps + command.time_steps
     return ((frame >= start_frame) & (frame <= end_frame)).to(dtype=torch.float32)
+
+
+def phase_aware_base_safety(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    recovery_settle_frame: int = 131,
+    pre_recovery_tilt_error_rad: float = 1.2,
+    pre_recovery_min_height: float = 0.3,
+    recovery_world_tilt_rad: float = 0.8,
+    recovery_min_height: float = 0.5,
+    unsafe_contact_body_names: list[str] | None = None,
+    unsafe_contact_force: float = 100.0,
+) -> torch.Tensor:
+    """Terminate on a physical fall without treating yaw error as a fall.
+
+    Before recovery, the capoeira reference intentionally tilts the pelvis and
+    spins around world Z.  Compare only the reference and robot *up vectors*,
+    so a heading mismatch does not trigger an emergency stop.  During recovery
+    the robot must instead be upright in the world frame and keep its pelvis
+    above a conservative minimum height.
+    """
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    local_up = torch.zeros_like(command.robot_anchor_pos_w)
+    local_up[:, 2] = 1.0
+    reference_up = quat_apply(command.anchor_quat_w, local_up)
+    robot_up = quat_apply(command.robot_anchor_quat_w, local_up)
+
+    relative_cos = torch.sum(reference_up * robot_up, dim=-1).clamp(-1.0, 1.0)
+    relative_tilt = torch.acos(relative_cos)
+    world_cos = robot_up[:, 2].clamp(-1.0, 1.0)
+    world_tilt = torch.acos(world_cos)
+
+    frame = command.motion_start_time_steps + command.time_steps
+    before_recovery = frame < recovery_settle_frame
+    unsafe_motion = (relative_tilt > pre_recovery_tilt_error_rad) | (
+        command.robot_anchor_pos_w[:, 2] < pre_recovery_min_height
+    )
+    unsafe_recovery = (world_tilt > recovery_world_tilt_rad) | (
+        command.robot_anchor_pos_w[:, 2] < recovery_min_height
+    )
+    unsafe = torch.where(before_recovery, unsafe_motion, unsafe_recovery)
+
+    if unsafe_contact_body_names:
+        sensor = env.scene["contact_forces"]
+        body_ids = [
+            sensor.body_names.index(name) for name in unsafe_contact_body_names
+        ]
+        force = torch.linalg.norm(
+            sensor.data.net_forces_w[:, body_ids], dim=-1
+        ).max(dim=-1).values
+        unsafe = unsafe | (force > unsafe_contact_force)
+    return unsafe
 
 
 def phase_support_contact(
@@ -244,4 +306,48 @@ def phase_center_over_feet(
     error = torch.square(pelvis_xy - feet_midpoint_xy).sum(dim=-1)
     return _phase_mask(command, start_frame, end_frame) * torch.exp(
         -error / (std * std)
+    )
+
+
+def phase_contact_force_overload(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    body_names: list[str],
+    soft_limit: float,
+    max_penalty: float = 9.0,
+) -> torch.Tensor:
+    """Penalize force above a soft limit without discouraging useful contact.
+
+    The hinge is zero below ``soft_limit``.  Squaring the normalized excess
+    makes sharp impacts more expensive than sustained, gently shared support.
+    The cap prevents an isolated PhysX spike from dominating an entire PPO
+    batch.
+    """
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    sensor = env.scene["contact_forces"]
+    body_ids = [sensor.body_names.index(name) for name in body_names]
+    forces = torch.linalg.norm(sensor.data.net_forces_w[:, body_ids], dim=-1)
+    peak_force = forces.max(dim=-1).values
+    overload = torch.relu(peak_force / soft_limit - 1.0).square()
+    return _phase_mask(command, start_frame, end_frame) * torch.clamp(
+        overload, max=max_penalty
+    )
+
+
+def phase_joint_velocity_overload(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    soft_limit: float,
+    max_penalty: float = 4.0,
+) -> torch.Tensor:
+    """Penalize only unusually fast joints, preserving normal movement speed."""
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    peak_speed = env.scene["robot"].data.joint_vel.abs().max(dim=-1).values
+    overload = torch.relu(peak_speed / soft_limit - 1.0).square()
+    return _phase_mask(command, start_frame, end_frame) * torch.clamp(
+        overload, max=max_penalty
     )

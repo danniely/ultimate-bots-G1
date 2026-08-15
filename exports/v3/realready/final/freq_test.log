@@ -1,0 +1,60 @@
+=== g1 ===
+ONNX Policy Frequency Test
+===========================
+Loading ONNX model: /srv/sonic/ultimate-bots-G1/exports/v3/realready/final/onnx/model_step_000100_g1.onnx
+Model has 1 inputs:
+  Input 0: obs_dict - Shape: [1, 1570] - Type: 1
+Model has 1 outputs:
+  Output 0: action - Shape: [1, 29] - Type: 1
+Initialized input 0 (obs_dict) with 1570 elements
+Successfully loaded policy model for frequency test
+Set input data generation mode to: RANDOM
+
+Running ONNX policy inference frequency test...
+Number of iterations: 1000
+Using input data mode: RANDOM
+
+=== Results ===
+Total time: 384089 μs
+Average time per inference: 384.089 μs
+Maximum frequency: 2603.56 Hz
+=== encoder ===
+ONNX Policy Frequency Test
+===========================
+Loading ONNX model: /srv/sonic/ultimate-bots-G1/exports/v3/realready/final/onnx/model_step_000100_encoder.onnx
+Model has 1 inputs:
+  Input 0: obs_dict - Shape: [1, 1751] - Type: 1
+Model has 1 outputs:
+  Output 0: encoded_tokens - Shape: [1, 64] - Type: 1
+Initialized input 0 (obs_dict) with 1751 elements
+Successfully loaded policy model for frequency test
+Set input data generation mode to: RANDOM
+
+Running ONNX policy inference frequency test...
+Number of iterations: 1000
+Using input data mode: RANDOM
+
+=== Results ===
+Total time: 401284 μs
+Average time per inference: 401.284 μs
+Maximum frequency: 2492 Hz
+=== decoder ===
+ONNX Policy Frequency Test
+===========================
+Loading ONNX model: /srv/sonic/ultimate-bots-G1/exports/v3/realready/final/onnx/model_step_000100_decoder.onnx
+Model has 1 inputs:
+  Input 0: obs_dict - Shape: [1, 994] - Type: 1
+Model has 1 outputs:
+  Output 0: action - Shape: [1, 29] - Type: 1
+Initialized input 0 (obs_dict) with 994 elements
+Successfully loaded policy model for frequency test
+Set input data generation mode to: RANDOM
+
+Running ONNX policy inference frequency test...
+Number of iterations: 1000
+Using input data mode: RANDOM
+
+=== Results ===
+Total time: 259480 μs
+Average time per inference: 259.48 μs
+Maximum frequency: 3853.86 Hz

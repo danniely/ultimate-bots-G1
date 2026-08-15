@@ -1,0 +1,47 @@
+-- C++ Compiler: /usr/bin/c++
+-- C++ Compiler ID: GNU
+-- C++ Compiler Version: 13.3.0
+-- ✅ CUDA Toolkit found: version 13.0.88
+--    CUDA Root: /usr/local/cuda
+--    CUDA Libraries: /usr/local/cuda/lib64
+--    🚀 CUDA 12.6+ detected - enabling optimized features
+-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.3")  
+-- The C compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Current system architecture: x86_64
+-- Importing: /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/thirdparty/unitree_sdk2/thirdparty/lib/x86_64/libddsc.so
+-- Importing: /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/thirdparty/unitree_sdk2/thirdparty/lib/x86_64/libddscxx.so
+-- Unitree SDK library found at: /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/thirdparty/unitree_sdk2/lib/x86_64/libunitree_sdk2.a
+-- Importing: /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/thirdparty/unitree_sdk2/lib/x86_64/libunitree_sdk2.a
+-- blah = /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/../../cmake
+-- ROS2 disabled (HAS_ROS2 unset or 0)
+-- ✅ msgpack found at: /usr/include
+-- ✅ x86_64 detected - building without DLA support
+--    Using CUDA library path: /usr/local/cuda/lib64
+-- ✅ ZMQ support enabled for main executable
+-- ✅ Added zmq_pose_subscriber_test (ZMQ found)
+-- ✅ Added zmq_python_sender_test (ZMQ found)
+-- ROS2 not found - building without ROS2InputHandler support
+CMake Warning (dev) at /usr/share/cmake-3.28/Modules/FetchContent.cmake:1331 (message):
+  The DOWNLOAD_EXTRACT_TIMESTAMP option was not given and policy CMP0135 is
+  not set.  The policy's OLD behavior will be used.  When using a URL
+  download, the timestamps of extracted files should preferably be that of
+  the time of extraction, otherwise code that depends on the extracted
+  contents might not be rebuilt if the URL changes.  The OLD behavior
+  preserves the timestamps from the archive instead, but this is usually not
+  what you want.  Update your project to the NEW behavior or specify the
+  DOWNLOAD_EXTRACT_TIMESTAMP option with a value of true to avoid this
+  robustness issue.
+Call Stack (most recent call first):
+  src/g1/g1_deploy_onnx_ref/CMakeLists.txt:239 (FetchContent_Declare)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+-- Found GTest: /usr/lib/x86_64-linux-gnu/cmake/GTest/GTestConfig.cmake (found version "1.14.0")  
+-- Configuring done (1.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/build

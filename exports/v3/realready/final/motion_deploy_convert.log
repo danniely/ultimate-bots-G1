@@ -1,0 +1,24 @@
+G1 Motion Data Converter
+========================
+Converting motion data from: /srv/sonic/ultimate-bots-G1/data/motion_lib/s_batido_v3_recovery.pkl
+Output directory structure: gear_sonic_deploy/reference/s_batido_v3_realready/
+✓ Successfully loaded with joblib
+
+Found 1 motion sequences:
+  - s_batido_v3_recovery_sonic
+
+Processing: s_batido_v3_recovery_sonic
+Creating individual folder for this motion: gear_sonic_deploy/reference/s_batido_v3_realready/s_batido_v3_recovery_sonic
+  ✗ Error processing s_batido_v3_recovery_sonic: 'joint_pos'
+Traceback (most recent call last):
+  File "/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/reference/convert_motions.py", line 274, in <module>
+    main()
+  File "/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/reference/convert_motions.py", line 243, in main
+    success, motion_count, joint_count, body_count = convert_motion_data(pkl_file, output_base_dir)
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/reference/convert_motions.py", line 63, in convert_motion_data
+    create_summary_file(data, base_output_dir)
+  File "/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/reference/convert_motions.py", line 213, in create_summary_file
+    joint_pos = motion_data['joint_pos']
+                ~~~~~~~~~~~^^^^^^^^^^^^^
+KeyError: 'joint_pos'

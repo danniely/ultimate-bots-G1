@@ -1,0 +1,77 @@
+name: s_batido_v3_robust
+source_checkpoint: checkpoints/v3/s_batido_v3_recovery_step_000600.pt
+motion: data/motion_lib/s_batido_v3_recovery.pkl
+
+# The existing v3 result was selected from a relaxed diagnostic setup.  This
+# pass preserves the same motion and recovery rewards, but trains with strict
+# tracking terminations and moderate sim-to-real randomization.
+training:
+  environments: 512
+  iterations: 400
+  save_interval: 50
+  actor_learning_rate: 1.0e-6
+  adaptive_lr_min: 2.5e-7
+  adaptive_lr_max: 4.0e-6
+  desired_kl: 0.002
+  fresh_optimizer: true
+  termination_thresholds:
+    anchor_position_m: 0.15
+    anchor_orientation_rad: 0.20
+    end_effector_height_m: 0.15
+    foot_position_m: 0.20
+  randomization:
+    static_friction: [0.6, 1.2]
+    dynamic_friction: [0.5, 1.0]
+    restitution: [0.0, 0.15]
+    joint_default_position_rad: [-0.005, 0.005]
+    torso_com_x_m: [-0.015, 0.015]
+    torso_com_y_m: [-0.02, 0.02]
+    torso_com_z_m: [-0.025, 0.025]
+    wrist_and_torso_mass_scale: [0.9, 1.15]
+    recovery_push_time_s: [2.0, 2.8]
+    recovery_push_linear_mps: 0.15
+    recovery_push_angular_rps: 0.20
+  hardware_load_penalties:
+    wrist_hand_soft_contact_limit_n: 400
+    landing_soft_contact_limit_n: 1200
+    joint_velocity_soft_limit_rad_s: 15
+
+evaluation:
+  # Selection is lexicographic: a checkpoint cannot compensate for falling by
+  # gaining a higher tracking reward before the fall.
+  order:
+    - strict_completion_rate
+    - highlight_frame_69_reach_rate
+    - recovery_completion_rate
+    - local_mpjpe
+    - peak_wrist_contact_force
+    - peak_foot_contact_force
+    - peak_applied_torque
+    - joint_velocity_rms
+  gates:
+    strict_nominal_success_rate: 0.95
+    moderate_randomization_success_rate: 0.85
+    official_randomization_success_rate: 0.70
+    highlight_frame_69_reach_rate: 0.95
+  seed_matrix:
+    screening_seeds: 5
+    finalist_seeds: 20
+  profiles:
+    - strict_nominal
+    - moderate_randomization
+    - official_randomization
+    - recovery_push
+
+deployment:
+  required:
+    - export_actor_to_onnx
+    - run_frequency_test
+    - official_cpp_mujoco_closed_loop
+    - repeat_nominal_mujoco_runs
+    - inspect_joint_torque_velocity_and_contact_logs
+  real_robot_prerequisites:
+    - overhead_gantry
+    - hardware_emergency_stop
+    - reduced_action_scale_dry_run
+    - joint_and_motor_temperature_monitoring
+    - staged_speed_ramp

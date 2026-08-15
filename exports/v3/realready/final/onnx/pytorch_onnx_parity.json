@@ -1,0 +1,52 @@
+[
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v3/robust/evaluations/realready_final_step_000100/contexts/hardware_nominal/exported/model_step_000100_smpl.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 1.9073486328125e-06,
+    "mean_abs_diff": 4.945644036524754e-07,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v3/robust/evaluations/realready_final_step_000100/contexts/hardware_nominal/exported/model_step_000100_g1.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 2.384185791015625e-06,
+    "mean_abs_diff": 6.126496714387031e-07,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v3/robust/evaluations/realready_final_step_000100/contexts/hardware_nominal/exported/model_step_000100_teleop.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 3.814697265625e-06,
+    "mean_abs_diff": 8.25858307962335e-07,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v3/robust/evaluations/realready_final_step_000100/contexts/hardware_nominal/exported/model_step_000100_encoder.onnx",
+    "shape": [
+      1,
+      64
+    ],
+    "max_abs_diff": 0.0,
+    "mean_abs_diff": 0.0,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v3/robust/evaluations/realready_final_step_000100/contexts/hardware_nominal/exported/model_step_000100_decoder.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 2.0265579223632812e-06,
+    "mean_abs_diff": 7.432596476064646e-07,
+    "all_finite": true
+  }
+]

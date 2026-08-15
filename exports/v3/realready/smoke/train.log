@@ -1,0 +1,465 @@
+/srv/sonic/env_isaaclab/lib/python3.11/site-packages/transformers/hf_argparser.py:380: FutureWarning: The `PPOConfig` is now located in `trl.experimental`. Please update your imports to `from trl.experimental.ppo import PPOConfig`. The current import path will be removed and no longer supported in TRL 0.29. For more information, see https://github.com/huggingface/trl/issues/4223.
+  obj = dtype(**inputs)
+Setting seed: 0
+[WARN][AppLauncher]: There are no arguments attached to the ArgumentParser object. If you have your own arguments, please load your own arguments before calling the `AppLauncher.add_app_launcher_args` method. This allows the method to check the validity of the arguments and perform checks for argument names.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/apps/isaaclab.python.headless.kit
+Loading user config located at: '/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[2026-08-14 19:37:28,699][asyncio][DEBUG] - Using selector: EpollSelector
+[2026-08-14 19:37:30,263][h5py._conv][DEBUG] - Creating converter from 7 to 5
+[2026-08-14 19:37:30,264][h5py._conv][DEBUG] - Creating converter from 5 to 7
+[2026-08-14 19:37:30,264][h5py._conv][DEBUG] - Creating converter from 7 to 5
+[2026-08-14 19:37:30,264][h5py._conv][DEBUG] - Creating converter from 5 to 7
+[2026-08-14 19:37:30,346][matplotlib][DEBUG] - matplotlib data path: /srv/sonic/env_isaaclab/lib/python3.11/site-packages/matplotlib/mpl-data
+[2026-08-14 19:37:30,353][matplotlib][DEBUG] - CONFIGDIR=/home/danniel/.config/matplotlib
+[2026-08-14 19:37:30,354][matplotlib][DEBUG] - interactive is False
+[2026-08-14 19:37:30,354][matplotlib][DEBUG] - platform is linux
+[2026-08-14 19:37:30,511][matplotlib][DEBUG] - CACHEDIR=/home/danniel/.cache/matplotlib
+[2026-08-14 19:37:30,512][matplotlib.font_manager][DEBUG] - Using fontManager instance from /home/danniel/.cache/matplotlib/fontlist-v390.json
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.173.02    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA H100 80GB HBM3            | Yes: 0 |     | 81559   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2330      | caddc900.. |
+|     |                                  |        |     |            | 8d        |            |
+|=============================================================================================|
+| OS: 24.04.4 LTS (Noble Numbat) ubuntu, Version: 24.04.4, Kernel: 6.11.0-1016-nvidia
+| Processor: Intel(R) Xeon(R) Platinum 8468
+| Cores: 8 | Logical Cores: 16
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 201291 | Free Memory: 197576
+| Total Page/Swap (MB): 0 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+cat: '/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor': No such file or directory
+[2026-08-14 19:37:31,534][filelock][DEBUG] - Attempting to release lock 124181854180944 on /tmp/isaaclab_app_launcher.lock
+[2026-08-14 19:37:31,534][filelock][DEBUG] - Lock 124181854180944 released on /tmp/isaaclab_app_launcher.lock
+[32m2026-08-14 19:37:31.549[0m | [1mINFO    [0m | [36m__main__[0m:[36mmain[0m:[36m309[0m - [1mSaving config file to logs_rl/TRL_G1_Track/s_batido_v3_realready_smoke-20260814_193724[0m
+saved meta: {'wandb_run': None, 'max_train_steps': 2}
+[32m2026-08-14 19:37:33.044[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.torch_humanoid_batch[0m:[36m<module>[0m:[36m40[0m - [1mUsing Humanoid Batch[0m
+[DEBUG] Instantiated events: EventCfg(physics_material=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_rigid_body_material', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names='.*', body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'static_friction_range': [0.6, 1.2], 'dynamic_friction_range': [0.5, 1.0], 'restitution_range': [0.0, 0.15], 'num_buckets': 64}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), add_joint_default_pos=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_joint_default_pos', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=['.*'], joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names=None, body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'pos_distribution_params': [-0.005, 0.005], 'operation': 'add'}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), add_hand_joint_default_pos=None, base_com=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_rigid_body_com', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names='torso_link', body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'com_range': {'x': [-0.015, 0.015], 'y': [-0.02, 0.02], 'z': [-0.025, 0.025]}}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), push_robot=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:push_by_setting_velocity', params={'velocity_range': {'x': [-0.15, 0.15], 'y': [-0.15, 0.15], 'z': [-0.05, 0.05], 'roll': [-0.2, 0.2], 'pitch': [-0.2, 0.2], 'yaw': [-0.2, 0.2]}}, mode='interval', interval_range_s=[2.0, 2.8], is_global_time=False, min_step_count_between_reset=0), randomize_rigid_body_mass=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_rigid_body_mass', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names='.*wrist_yaw.*|torso_link', body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'mass_distribution_params': [0.9, 1.15], 'operation': 'scale'}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0))
+[DEBUG]   Event 'physics_material': EventTermCfg
+[DEBUG]   Event 'add_joint_default_pos': EventTermCfg
+[DEBUG]   Event 'base_com': EventTermCfg
+[DEBUG]   Event 'push_robot': EventTermCfg
+[DEBUG]   Event 'randomize_rigid_body_mass': EventTermCfg
+Setting seed: 0
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 0
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 2.643650 seconds
+[2026-08-14 19:37:35,820][trimesh][DEBUG] - 2 items cleared from cache: ['face_normals', 'triangles']
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.173.02    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA H100 80GB HBM3            | Yes: 0 |     | 81559   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2330      | caddc900.. |
+|     |                                  |        |     |            | 8d        |            |
+|=============================================================================================|
+| OS: 24.04.4 LTS (Noble Numbat) ubuntu, Version: 24.04.4, Kernel: 6.11.0-1016-nvidia
+| Processor: Intel(R) Xeon(R) Platinum 8468
+| Cores: 8 | Logical Cores: 16
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 201291 | Free Memory: 196602
+| Total Page/Swap (MB): 0 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+cat: '/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor': No such file or directory
+[2026-08-14 19:37:37,435][AutoNode][DEBUG] - Defining data type 'any' as 'Any'
+[2026-08-14 19:37:37,436][AutoNode][DEBUG] - Defining data type 'bool' as 'Bool' and array 'BoolArray
+[2026-08-14 19:37:37,436][AutoNode][DEBUG] - Defining data type 'bundle' as 'Bundle'
+[2026-08-14 19:37:37,436][AutoNode][DEBUG] - Defining data type 'colord[3]' as 'Color3d' and array 'Color3dArray
+[2026-08-14 19:37:37,436][AutoNode][DEBUG] - Defining data type 'colorf[3]' as 'Color3f' and array 'Color3fArray
+[2026-08-14 19:37:37,436][AutoNode][DEBUG] - Defining data type 'colorh[3]' as 'Color3h' and array 'Color3hArray
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'colord[4]' as 'Color4d' and array 'Color4dArray
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'colorf[4]' as 'Color4f' and array 'Color4fArray
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'colorh[4]' as 'Color4h' and array 'Color4hArray
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'double' as 'Double' and array 'DoubleArray
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'double[2]' as 'Double2' and array 'Double2Array
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'double[3]' as 'Double3' and array 'Double3Array
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'double[4]' as 'Double4' and array 'Double4Array
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'execution' as 'Execution'
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'float' as 'Float' and array 'FloatArray
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'float[2]' as 'Float2' and array 'Float2Array
+[2026-08-14 19:37:37,437][AutoNode][DEBUG] - Defining data type 'float[3]' as 'Float3' and array 'Float3Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'float[4]' as 'Float4' and array 'Float4Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'frame[4]' as 'Frame' and array 'FrameArray
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'half' as 'Half' and array 'HalfArray
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'half[2]' as 'Half2' and array 'Half2Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'half[3]' as 'Half3' and array 'Half3Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'half[4]' as 'Half4' and array 'Half4Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'int' as 'Int' and array 'IntArray
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'int[2]' as 'Int2' and array 'Int2Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'int[3]' as 'Int3' and array 'Int3Array
+[2026-08-14 19:37:37,438][AutoNode][DEBUG] - Defining data type 'int[4]' as 'Int4' and array 'Int4Array
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'int64' as 'Int64' and array 'Int64Array
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'matrixd[2]' as 'Matrix2d' and array 'Matrix2dArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'matrixd[3]' as 'Matrix3d' and array 'Matrix3dArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'matrixd[4]' as 'Matrix4d' and array 'Matrix4dArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'normald[3]' as 'Normal3d' and array 'Normal3dArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'normalf[3]' as 'Normal3f' and array 'Normal3fArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'normalh[3]' as 'Normal3h' and array 'Normal3hArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'objectId' as 'ObjectId' and array 'ObjectIdArray
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'path' as 'Path'
+[2026-08-14 19:37:37,439][AutoNode][DEBUG] - Defining data type 'pointd[3]' as 'Point3d' and array 'Point3dArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'pointf[3]' as 'Point3f' and array 'Point3fArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'pointh[3]' as 'Point3h' and array 'Point3hArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'quatd[4]' as 'Quatd' and array 'QuatdArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'quatf[4]' as 'Quatf' and array 'QuatfArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'quath[4]' as 'Quath' and array 'QuathArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'string' as 'String'
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'target' as 'Target'
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'texcoordd[2]' as 'TexCoord2d' and array 'TexCoord2dArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'texcoordf[2]' as 'TexCoord2f' and array 'TexCoord2fArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'texcoordh[2]' as 'TexCoord2h' and array 'TexCoord2hArray
+[2026-08-14 19:37:37,440][AutoNode][DEBUG] - Defining data type 'texcoordd[3]' as 'TexCoord3d' and array 'TexCoord3dArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'texcoordf[3]' as 'TexCoord3f' and array 'TexCoord3fArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'texcoordh[3]' as 'TexCoord3h' and array 'TexCoord3hArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'timecode' as 'Timecode' and array 'TimecodeArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'token' as 'Token' and array 'TokenArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'uchar' as 'UChar' and array 'UCharArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'uint' as 'UInt' and array 'UIntArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'uint64' as 'UInt64' and array 'UInt64Array
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'vectord[3]' as 'Vector3d' and array 'Vector3dArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'vectorf[3]' as 'Vector3f' and array 'Vector3fArray
+[2026-08-14 19:37:37,441][AutoNode][DEBUG] - Defining data type 'vectorh[3]' as 'Vector3h' and array 'Vector3hArray
+[INFO]: Time taken for scene creation : 6.146776 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 32
+	Environment spacing   : 2.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : []
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 1.688052 seconds
+[32m2026-08-14 19:37:41.261[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36m__init__[0m:[36m235[0m - [1mLoaded skeleton from gear_sonic/data/assets/robot_description/mjcf/g1_29dof_rev_1_0.xml[0m
+[32m2026-08-14 19:37:41.262[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36m__init__[0m:[36m236[0m - [1mLoading motion data from /srv/sonic/ultimate-bots-G1/data/motion_lib/s_batido_v3_recovery.pkl...[0m
+[32m2026-08-14 19:37:41.263[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_data[0m:[36m472[0m - [1mLoaded 1 motions[0m
+Loading Meshes ... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Loading Geoms... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+[32m2026-08-14 19:37:41.812[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1091[0m - [1mLoading 1 motions...[0m
+[32m2026-08-14 19:37:41.812[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1092[0m - [1mSampling motion: tensor([0], device='cuda:0'), ....[0m
+[32m2026-08-14 19:37:41.812[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1093[0m - [1mCurrent motion keys: ['s_batido_v3_recovery_sonic'], ....[0m
+[32m2026-08-14 19:37:41.813[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1120[0m - [1mIncreased file descriptor limits from 2450/1048576 to 1048576/1048576[0m
+[32m2026-08-14 19:37:41.887[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1140[0m - [1mLoading motions with 1 jobs...[0m
+Loading motions... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Gathering results for non-navigation dataset... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Processing motions... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+[32m2026-08-14 19:37:41.941[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1577[0m - [1mLoaded 1 motions with a total length of 3.600s and 181 frames.[0m
+[INFO] Command Manager:  <CommandManager> contains 1 active terms.
++----------------------------------+
+|       Active Command Terms       |
++-------+--------+-----------------+
+| Index | Name   |       Type      |
++-------+--------+-----------------+
+|   0   | motion | TrackingCommand |
++-------+--------+-----------------+
+
+[INFO] Event Manager:  <EventManager> contains 2 active terms.
++----------------------------------------+
+| Active Event Terms in Mode: 'startup'  |
++--------+-------------------------------+
+| Index  | Name                          |
++--------+-------------------------------+
+|   0    | physics_material              |
+|   1    | add_joint_default_pos         |
+|   2    | base_com                      |
+|   3    | randomize_rigid_body_mass     |
++--------+-------------------------------+
++----------------------------------------------+
+|    Active Event Terms in Mode: 'interval'    |
++-------+------------+-------------------------+
+| Index | Name       | Interval time range (s) |
++-------+------------+-------------------------+
+|   0   | push_robot |        [2.0, 2.8]       |
++-------+------------+-------------------------+
+
+[INFO] Recorder Manager:  <RecorderManager> contains 0 active terms.
++---------------------+
+| Active Recorder Terms |
++-----------+---------+
+|   Index   | Name    |
++-----------+---------+
++-----------+---------+
+
+[INFO] Action Manager:  <ActionManager> contains 1 active terms.
++------------------------------------+
+|  Active Action Terms (shape: 29)   |
++--------+-------------+-------------+
+| Index  | Name        |   Dimension |
++--------+-------------+-------------+
+|   0    | joint_pos   |          29 |
++--------+-------------+-------------+
+
+[INFO] Observation Manager: <ObservationManager> contains 3 groups.
++---------------------------------------------------------+
+| Active Observation Terms in Group: 'policy' (shape: (930,)) |
++-------------+---------------------------+---------------+
+|    Index    | Name                      |     Shape     |
++-------------+---------------------------+---------------+
+|      0      | base_ang_vel              |     (30,)     |
+|      1      | joint_pos                 |     (290,)    |
+|      2      | joint_vel                 |     (290,)    |
+|      3      | actions                   |     (290,)    |
+|      4      | gravity_dir               |     (30,)     |
++-------------+---------------------------+---------------+
++------------------------------------------------------------+
+| Active Observation Terms in Group: 'critic' (shape: (1645,)) |
++-----------+-----------------------------------+------------+
+|   Index   | Name                              |   Shape    |
++-----------+-----------------------------------+------------+
+|     0     | command_multi_future              |   (580,)   |
+|     1     | motion_anchor_pos_b               |    (3,)    |
+|     2     | motion_anchor_ori_b               |    (6,)    |
+|     3     | body_pos                          |   (42,)    |
+|     4     | body_ori                          |   (84,)    |
+|     5     | base_lin_vel                      |   (30,)    |
+|     6     | base_ang_vel                      |   (30,)    |
+|     7     | joint_pos                         |   (290,)   |
+|     8     | joint_vel                         |   (290,)   |
+|     9     | actions                           |   (290,)   |
++-----------+-----------------------------------+------------+
++-----------------------------------------------------------+
+|       Active Observation Terms in Group: 'tokenizer'      |
++-------+----------------------------------------+----------+
+| Index | Name                                   |  Shape   |
++-------+----------------------------------------+----------+
+|   0   | encoder_index                          |   (3,)   |
+|   1   | command_multi_future_nonflat           | (10, 58) |
+|   2   | command_z_multi_future_nonflat         | (10, 1)  |
+|   3   | command_z                              |   (1,)   |
+|   4   | motion_anchor_ori_b                    |   (6,)   |
+|   5   | motion_anchor_ori_b_mf_nonflat         | (10, 6)  |
+|   6   | command_multi_future_lower_body        |  (240,)  |
+|   7   | vr_3point_local_target                 |   (9,)   |
+|   8   | vr_3point_local_orn_target             |  (12,)   |
+|   9   | smpl_joints_multi_future_local_nonflat | (10, 72) |
+|   10  | smpl_root_ori_b_multi_future           | (10, 6)  |
+|   11  | joint_pos_multi_future_wrist_for_smpl  | (10, 6)  |
++-------+----------------------------------------+----------+
+
+[INFO] Termination Manager:  <TerminationManager> contains 2 active terms.
++------------------------------------+
+|      Active Termination Terms      |
++-------+-----------------+----------+
+| Index | Name            | Time Out |
++-------+-----------------+----------+
+|   0   | time_out        |   True   |
+|   1   | anchor_ori_full |  False   |
++-------+-----------------+----------+
+
+[INFO] Reward Manager:  <RewardManager> contains 28 active terms.
++-----------------------------------------------------+
+|                 Active Reward Terms                 |
++-------+----------------------------------+----------+
+| Index | Name                             |   Weight |
++-------+----------------------------------+----------+
+|   0   | tracking_anchor_pos              |      0.5 |
+|   1   | tracking_anchor_ori              |      0.5 |
+|   2   | tracking_relative_body_pos       |      1.0 |
+|   3   | tracking_relative_body_ori       |      1.0 |
+|   4   | tracking_body_linvel             |      1.0 |
+|   5   | tracking_body_angvel             |      1.0 |
+|   6   | action_rate_l2                   |     -0.1 |
+|   7   | joint_limit                      |    -10.0 |
+|   8   | undesired_contacts               |     -0.1 |
+|   9   | anti_shake_ang_vel               |   -0.005 |
+|   10  | tracking_vr_5point_local         |      2.0 |
+|   11  | feet_acc                         | -2.5e-06 |
+|   12  | support_contact                  |      0.5 |
+|   13  | takeoff_contact                  |      0.5 |
+|   14  | takeoff_pelvis_vertical_velocity |      2.0 |
+|   15  | airborne_right_leg_position      |      2.0 |
+|   16  | airborne_right_leg_orientation   |      1.0 |
+|   17  | airborne_right_leg_joint_pose    |      1.0 |
+|   18  | airborne_pelvis_orientation      |      1.0 |
+|   19  | landing_pelvis_tracking          |      0.5 |
+|   20  | recovery_double_foot_contact     |      1.5 |
+|   21  | recovery_upright                 |      2.0 |
+|   22  | recovery_low_base_velocity       |      1.0 |
+|   23  | recovery_center_of_support       |      1.5 |
+|   24  | support_contact_overload         |     -0.2 |
+|   25  | landing_contact_overload         |     -0.1 |
+|   26  | joint_velocity_overload          |    -0.05 |
+|   27  | dangerous_body_contact           |     -1.0 |
++-------+----------------------------------+----------+
+
+[INFO] Curriculum Manager:  <CurriculumManager> contains 0 active terms.
++----------------------+
+| Active Curriculum Terms |
++-----------+----------+
+|   Index   | Name     |
++-----------+----------+
++-----------+----------+
+
+[INFO]: Completed setting up the environment...
+[32m2026-08-14 19:37:44.488[0m | [1mINFO    [0m | [36mgear_sonic.trl.modules.universal_token_modules[0m:[36m__init__[0m:[36m250[0m - [1mMotion Encoder and Quantizer initialized with embedding dim: 64 (num_tokens=2, token_dim=32)[0m
+[32m2026-08-14 19:37:44.514[0m | [1mINFO    [0m | [36mgear_sonic.trl.modules.universal_token_modules[0m:[36m__init__[0m:[36m319[0m - [1mInitialized g1 encoder with input features: ['command_multi_future_nonflat', 'motion_anchor_ori_b_mf_nonflat'][0m
+[32m2026-08-14 19:37:44.534[0m | [1mINFO    [0m | [36mgear_sonic.trl.modules.universal_token_modules[0m:[36m__init__[0m:[36m319[0m - [1mInitialized teleop encoder with input features: ['command_multi_future_lower_body', 'vr_3point_local_target', 'vr_3point_local_orn_target', 'motion_anchor_ori_b'][0m
+[32m2026-08-14 19:37:44.560[0m | [1mINFO    [0m | [36mgear_sonic.trl.modules.universal_token_modules[0m:[36m__init__[0m:[36m319[0m - [1mInitialized smpl encoder with input features: ['smpl_joints_multi_future_local_nonflat', 'smpl_root_ori_b_multi_future', 'joint_pos_multi_future_wrist_for_smpl'][0m
+[32m2026-08-14 19:37:44.615[0m | [1mINFO    [0m | [36mgear_sonic.trl.modules.universal_token_modules[0m:[36m__init__[0m:[36m409[0m - [1mInitialized g1_dyn decoder with input features: ['token_flattened', 'proprioception'] and output features: ['action'][0m
+[32m2026-08-14 19:37:44.638[0m | [1mINFO    [0m | [36mgear_sonic.trl.modules.universal_token_modules[0m:[36m__init__[0m:[36m409[0m - [1mInitialized g1_kin decoder with input features: ['token'] and output features: ['command_multi_future_nonflat', 'motion_anchor_ori_b_mf_nonflat'][0m
+RunningMeanStd:  (1645,)
+Loading checkpoint from /srv/sonic/ultimate-bots-G1/checkpoints/v3/s_batido_v3_recovery_step_000600.pt
+Loaded checkpoint from step 600
+===training policy===
+╭──────────────────────────────── Training Log ────────────────────────────────╮
+│                         [1m Learning iteration 1  [0m                        │
+│                                                                              │
+│                        Computation: 181 steps/s (Collection: 3.648s,         │
+│ Learning 0.589s)                                                             │
+│              Mean action noise std: 0.38                                     │
+│                       Mean entropy: 12.92892                                 │
+│                       Mean rewards: 0.29594                                  │
+│                        Mean length: 13.28571                                 │
+│ Env/Episode_Reward/tracking_anchor_pos: 0.0073                               │
+│ Env/Episode_Reward/tracking_anchor_ori: 0.0068                               │
+│ Env/Episode_Reward/tracking_relative_body_pos: 0.0160                        │
+│ Env/Episode_Reward/tracking_relative_body_ori: 0.0071                        │
+│ Env/Episode_Reward/tracking_body_linvel: 0.0023                              │
+│ Env/Episode_Reward/tracking_body_angvel: 0.0017                              │
+│  Env/Episode_Reward/action_rate_l2: -0.0302                                  │
+│     Env/Episode_Reward/joint_limit: -0.0037                                  │
+│ Env/Episode_Reward/undesired_contacts: -0.0104                               │
+│ Env/Episode_Reward/anti_shake_ang_vel: -0.0065                               │
+│ Env/Episode_Reward/tracking_vr_5point_local: 0.0179                          │
+│        Env/Episode_Reward/feet_acc: -0.0170                                  │
+│ Env/Episode_Reward/support_contact: 0.0000                                   │
+│ Env/Episode_Reward/takeoff_contact: 0.0005                                   │
+│ Env/Episode_Reward/takeoff_pelvis_vertical_velocity: 0.0045                  │
+│ Env/Episode_Reward/airborne_right_leg_position: 0.0209                       │
+│ Env/Episode_Reward/airborne_right_leg_orientation: 0.0068                    │
+│ Env/Episode_Reward/airborne_right_leg_joint_pose: 0.0107                     │
+│ Env/Episode_Reward/airborne_pelvis_orientation: 0.0088                       │
+│ Env/Episode_Reward/landing_pelvis_tracking: 0.0000                           │
+│ Env/Episode_Reward/recovery_double_foot_contact: 0.0003                      │
+│ Env/Episode_Reward/recovery_upright: 0.0000                                  │
+│ Env/Episode_Reward/recovery_low_base_velocity: 0.0000                        │
+│ Env/Episode_Reward/recovery_center_of_support: 0.0000                        │
+│ Env/Episode_Reward/support_contact_overload: -0.0057                         │
+│ Env/Episode_Reward/landing_contact_overload: 0.0000                          │
+│ Env/Episode_Reward/joint_velocity_overload: -0.0000                          │
+│ Env/Episode_Reward/dangerous_body_contact: -0.0253                           │
+│ Env/Metrics/motion/error_anchor_pos: 0.2277                                  │
+│ Env/Metrics/motion/error_anchor_rot: 0.4019                                  │
+│ Env/Metrics/motion/error_anchor_lin_vel: 1.3367                              │
+│ Env/Metrics/motion/error_anchor_ang_vel: 3.4779                              │
+│  Env/Metrics/motion/error_body_pos: 0.1904                                   │
+│  Env/Metrics/motion/error_body_rot: 0.5053                                   │
+│ Env/Metrics/motion/error_joint_pos: 0.2161                                   │
+│ Env/Metrics/motion/error_joint_vel: 2.8499                                   │
+│   Env/Episode_Termination/time_out: 0.0000                                   │
+│ Env/Episode_Termination/anchor_ori_full: 0.1068                              │
+│      Env/adp_samp/num_episodes_min: 1.0000                                   │
+│      Env/adp_samp/num_episodes_max: 6.8950                                   │
+│     Env/adp_samp/num_episodes_mean: 3.0000                                   │
+│      Env/adp_samp/num_failures_min: 1.0000                                   │
+│      Env/adp_samp/num_failures_max: 2.2083                                   │
+│     Env/adp_samp/num_failures_mean: 1.4271                                   │
+│      Env/adp_samp/failure_rate_min: 1.0000                                   │
+│      Env/adp_samp/failure_rate_max: 1.0000                                   │
+│     Env/adp_samp/failure_rate_mean: 1.0000                                   │
+│              Env/adp_samp/prob_max: 0.1381                                   │
+│              Env/adp_samp/prob_min: 0.0331                                   │
+│             Env/adp_samp/prob_mean: 0.1250                                   │
+│ Env/adp_samp/prob_max_over_uniform: 1.1050                                   │
+│    Env/adp_samp/effective_num_bins: 7.4271                                   │
+│ Env/adp_samp/num_concentrated_bins: 0.0000                                   │
+│ Env/adp_samp/episodes_max_over_mean: 2.2015                                  │
+│ Env/Metrics/motion/error_body_lin_vel: 1.8595                                │
+│ Env/Metrics/motion/error_body_ang_vel: 5.6400                                │
+│ ---------------------------------------------------------------------------- │
+│ ----                                                                         │
+│                     Total episodes: 32                                       │
+│                    Total timesteps: 768                                      │
+│                     Iteration time: 4.24s                                    │
+│                         Total time: 4.24s                                    │
+│                                ETA: 4.2s                                     │
+│ Logging Directory:                                                           │
+│ logs_rl/TRL_G1_Track/s_batido_v3_realready_smoke-20260814_193724             │
+╰──────────────────────────────────────────────────────────────────────────────╯╭──────────────────────────────── Training Log ────────────────────────────────╮
+│                         [1m Learning iteration 2  [0m                        │
+│                                                                              │
+│                        Computation: 279 steps/s (Collection: 2.342s,         │
+│ Learning 0.403s)                                                             │
+│              Mean action noise std: 0.38                                     │
+│                       Mean entropy: 12.92901                                 │
+│                       Mean rewards: 1.26989                                  │
+│                        Mean length: 24.35714                                 │
+│ Env/Episode_Reward/tracking_anchor_pos: 0.0239                               │
+│ Env/Episode_Reward/tracking_anchor_ori: 0.0259                               │
+│ Env/Episode_Reward/tracking_relative_body_pos: 0.0606                        │
+│ Env/Episode_Reward/tracking_relative_body_ori: 0.0367                        │
+│ Env/Episode_Reward/tracking_body_linvel: 0.0321                              │
+│ Env/Episode_Reward/tracking_body_angvel: 0.0222                              │
+│  Env/Episode_Reward/action_rate_l2: -0.0787                                  │
+│     Env/Episode_Reward/joint_limit: -0.0047                                  │
+│ Env/Episode_Reward/undesired_contacts: -0.0326                               │
+│ Env/Episode_Reward/anti_shake_ang_vel: -0.0068                               │
+│ Env/Episode_Reward/tracking_vr_5point_local: 0.0976                          │
+│        Env/Episode_Reward/feet_acc: -0.0083                                  │
+│ Env/Episode_Reward/support_contact: 0.0030                                   │
+│ Env/Episode_Reward/takeoff_contact: 0.0044                                   │
+│ Env/Episode_Reward/takeoff_pelvis_vertical_velocity: 0.0345                  │
+│ Env/Episode_Reward/airborne_right_leg_position: 0.0198                       │
+│ Env/Episode_Reward/airborne_right_leg_orientation: 0.0072                    │
+│ Env/Episode_Reward/airborne_right_leg_joint_pose: 0.0102                     │
+│ Env/Episode_Reward/airborne_pelvis_orientation: 0.0059                       │
+│ Env/Episode_Reward/landing_pelvis_tracking: 0.0000                           │
+│ Env/Episode_Reward/recovery_double_foot_contact: 0.0199                      │
+│ Env/Episode_Reward/recovery_upright: 0.0306                                  │
+│ Env/Episode_Reward/recovery_low_base_velocity: 0.0046                        │
+│ Env/Episode_Reward/recovery_center_of_support: 0.0224                        │
+│ Env/Episode_Reward/support_contact_overload: -0.0504                         │
+│ Env/Episode_Reward/landing_contact_overload: 0.0000                          │
+│ Env/Episode_Reward/joint_velocity_overload: -0.0000                          │
+│ Env/Episode_Reward/dangerous_body_contact: -0.0232                           │
+│ Env/Metrics/motion/error_anchor_pos: 0.2698                                  │
+│ Env/Metrics/motion/error_anchor_rot: 0.2748                                  │
+│ Env/Metrics/motion/error_anchor_lin_vel: 0.6746                              │
+│ Env/Metrics/motion/error_anchor_ang_vel: 2.4619                              │
+│  Env/Metrics/motion/error_body_pos: 0.1396                                   │
+│  Env/Metrics/motion/error_body_rot: 0.4007                                   │
+│ Env/Metrics/motion/error_joint_pos: 0.2048                                   │
+│ Env/Metrics/motion/error_joint_vel: 1.9295                                   │
+│ Env/Metrics/motion/error_body_lin_vel: 0.8733                                │
+│ Env/Metrics/motion/error_body_ang_vel: 3.2357                                │
+│   Env/Episode_Termination/time_out: 0.0234                                   │
+│ Env/Episode_Termination/anchor_ori_full: 0.2812                              │
+│      Env/adp_samp/num_episodes_min: 1.8194                                   │
+│      Env/adp_samp/num_episodes_max: 13.1017                                  │
+│     Env/adp_samp/num_episodes_mean: 6.9178                                   │
+│      Env/adp_samp/num_failures_min: 1.0000                                   │
+│      Env/adp_samp/num_failures_max: 3.4167                                   │
+│     Env/adp_samp/num_failures_mean: 2.1562                                   │
+│      Env/adp_samp/failure_rate_min: 0.2016                                   │
+│      Env/adp_samp/failure_rate_max: 1.0000                                   │
+│     Env/adp_samp/failure_rate_mean: 0.4956                                   │
+│              Env/adp_samp/prob_max: 0.2573                                   │
+│              Env/adp_samp/prob_min: 0.0703                                   │
+│             Env/adp_samp/prob_mean: 0.1250                                   │
+│ Env/adp_samp/prob_max_over_uniform: 2.0583                                   │
+│    Env/adp_samp/effective_num_bins: 6.6402                                   │
+│ Env/adp_samp/num_concentrated_bins: 0.0000                                   │
+│ Env/adp_samp/episodes_max_over_mean: 1.9271                                  │
+│ ---------------------------------------------------------------------------- │
+│ ----                                                                         │
+│                     Total episodes: 64                                       │
+│                    Total timesteps: 1536                                     │
+│                     Iteration time: 2.75s                                    │
+│                         Total time: 6.98s                                    │
+│                                ETA: 0.0s                                     │
+│ Logging Directory:                                                           │
+│ logs_rl/TRL_G1_Track/s_batido_v3_realready_smoke-20260814_193724             │
+╰──────────────────────────────────────────────────────────────────────────────╯

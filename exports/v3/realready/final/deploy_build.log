@@ -1,0 +1,67 @@
+[  3%] Building CXX object src/TRTInference/CMakeFiles/TRTInference.dir/InferenceEngine.cpp.o
+[  7%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/zmq_python_sender_test.dir/tests/zmq_python_sender_test.cpp.o
+[ 10%] Building CXX object src/g1/freq_test/CMakeFiles/freq_test.dir/src/freq_test.cpp.o
+[ 14%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/zmq_pose_subscriber_test.dir/tests/zmq_pose_subscriber_test.cpp.o
+[ 17%] Building CXX object src/audio_thread/CMakeFiles/audio_thread.dir/audio_thread.cpp.o
+[ 21%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/g1_deploy_shared.dir/src/file_sink.cpp.o
+[ 28%] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
+[ 28%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/g1_deploy_shared.dir/src/cnpy.cpp.o
+/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/InferenceEngine.cpp:13:10: fatal error: NvOnnxParser.h: No such file or directory
+   13 | #include <NvOnnxParser.h>
+      |          ^~~~~~~~~~~~~~~~
+compilation terminated.
+gmake[2]: *** [src/TRTInference/CMakeFiles/TRTInference.dir/build.make:76: src/TRTInference/CMakeFiles/TRTInference.dir/InferenceEngine.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:276: src/TRTInference/CMakeFiles/TRTInference.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+[ 32%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/g1_deploy_shared.dir/src/fk.cpp.o
+[ 35%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/g1_deploy_shared.dir/src/state_logger.cpp.o
+[ 39%] Linking CXX executable /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/target/release/freq_test
+[ 39%] Built target freq_test
+[ 42%] Linking CXX static library libaudio_thread.a
+[ 42%] Built target audio_thread
+[ 46%] Linking CXX static library libg1_deploy_shared.a
+[ 46%] Built target g1_deploy_shared
+[ 50%] Linking CXX executable /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/target/release/zmq_python_sender_test
+[ 50%] Built target zmq_python_sender_test
+[ 53%] Linking CXX executable /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/target/release/zmq_pose_subscriber_test
+[ 53%] Built target zmq_pose_subscriber_test
+[ 57%] Linking CXX static library ../../../lib/libgtest.a
+[ 57%] Built target gtest
+gmake: *** [Makefile:136: all] Error 2
+[  3%] Building CXX object src/TRTInference/CMakeFiles/TRTInference.dir/InferenceEngine.cpp.o
+[ 10%] Built target freq_test
+[ 17%] Built target zmq_pose_subscriber_test
+[ 25%] Built target zmq_python_sender_test
+[ 32%] Built target gtest
+[ 50%] Built target g1_deploy_shared
+[ 57%] Built target audio_thread
+[ 60%] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o
+[ 64%] Building CXX object _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o
+[ 67%] Linking CXX static library ../../../lib/libgtest_main.a
+[ 67%] Built target gtest_main
+In file included from /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/InferenceEngine.cpp:3:
+In member function ‘void picosha2::hash256_one_by_one::finish()’,
+    inlined from ‘void picosha2::impl::hash256_impl(RaIter, RaIter, OutIter, OutIter, int, std::random_access_iterator_tag) [with RaIter = __gnu_cxx::__normal_iterator<const char*, std::__cxx11::basic_string<char> >; OutIter = unsigned char*]’ at /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/picosha2.h:294:18,
+    inlined from ‘void picosha2::hash256(InIter, InIter, OutIter, OutIter, int) [with InIter = __gnu_cxx::__normal_iterator<const char*, std::__cxx11::basic_string<char> >; OutIter = unsigned char*]’ at /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/picosha2.h:323:33,
+    inlined from ‘void picosha2::hash256_hex_string(InIter, InIter, std::string&) [with InIter = __gnu_cxx::__normal_iterator<const char*, std::__cxx11::basic_string<char> >]’ at /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/picosha2.h:346:12:
+/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/picosha2.h:210:23: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
+  210 |         temp[remains] = 0x80;
+      |         ~~~~~~~~~~~~~~^~~~~~
+/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/picosha2.h: In function ‘void picosha2::hash256_hex_string(InIter, InIter, std::string&) [with InIter = __gnu_cxx::__normal_iterator<const char*, std::__cxx11::basic_string<char> >]’:
+/srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/src/TRTInference/picosha2.h:206:16: note: at offset 64 into destination object ‘temp’ of size 64
+  206 |         byte_t temp[64];
+      |                ^~~~
+[ 71%] Linking CXX static library libTRTInference.a
+[ 71%] Built target TRTInference
+[ 75%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/g1_deploy_onnx_ref.dir/src/g1_deploy_onnx_ref.cpp.o
+[ 78%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/run_tests.dir/unit_tests/test_fk.cpp.o
+[ 82%] Building CXX object src/g1/g1_deploy_onnx_ref/CMakeFiles/run_tests.dir/unit_tests/test_main.cpp.o
+[ 85%] Linking CXX static library ../../../lib/libgmock.a
+[ 85%] Built target gmock
+[ 89%] Building CXX object _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o
+[ 92%] Linking CXX static library ../../../lib/libgmock_main.a
+[ 92%] Built target gmock_main
+[ 96%] Linking CXX executable /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/target/release/run_tests
+[ 96%] Built target run_tests
+[100%] Linking CXX executable /srv/sonic/GR00T-WholeBodyControl/gear_sonic_deploy/target/release/g1_deploy_onnx_ref
+[100%] Built target g1_deploy_onnx_ref

@@ -1,0 +1,16 @@
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ libnvinfer-dev : Depends: libnvinfer-headers-dev (= 10.13.3.9-1+cuda13.0) but it is not installable
+                  Depends: libnvinfer10 (= 10.13.3.9-1+cuda13.0) but it is not installable
+ libnvinfer-plugin-dev : Depends: libnvinfer-headers-plugin-dev (= 10.13.3.9-1+cuda13.0) but it is not installable
+                         Depends: libnvinfer-plugin10 (= 10.13.3.9-1+cuda13.0) but it is not installable
+ libnvonnxparsers-dev : Depends: libnvonnxparsers10 (= 10.13.3.9-1+cuda13.0) but it is not installable
+E: Unable to correct problems, you have held broken packages.

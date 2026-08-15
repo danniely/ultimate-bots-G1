@@ -1,0 +1,48 @@
+{
+  "contact_force_n": {
+    "feet_ankles": {
+      "mean": 226.17137077140737,
+      "p99": 515.5507823786174,
+      "peak": 1788.9885495327692
+    },
+    "other": {
+      "mean": 86.70530165171813,
+      "p99": 1999.1100215813917,
+      "peak": 2278.685465418419
+    },
+    "wrist_hand": {
+      "mean": 1298.7952986688763,
+      "p99": 1584.1782477668944,
+      "peak": 1988.8643798850428
+    }
+  },
+  "fps": 50.0,
+  "frames": 181,
+  "joint_acceleration_rad_s2": {
+    "p99_abs": 141.10243773460408,
+    "peak_abs": 1051.6072690486908
+  },
+  "joint_velocity_rad_s": {
+    "p99_abs": 6.3207737159728605,
+    "peak": {
+      "frame": 39,
+      "joint": "right_ankle_pitch_joint",
+      "value": 21.981937408447266
+    },
+    "rms": 1.701565836203481
+  },
+  "last_motion_frame": 180,
+  "source": "/srv/sonic/ultimate-bots-G1/exports/v3/final/frames/env_000000_frames.csv",
+  "termination_frame_counts": {
+    "time_out": 0
+  },
+  "torque_nm": {
+    "p99_abs": 50.0,
+    "peak": {
+      "frame": 19,
+      "joint": "right_knee_joint",
+      "value": 91.85576629638672
+    },
+    "rms": 12.082926310732452
+  }
+}

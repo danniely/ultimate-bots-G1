@@ -1,0 +1,127 @@
+{
+  "model_step_000100_decoder.onnx": {
+    "onnx_checker": "pass",
+    "inputs": [
+      {
+        "name": "obs_dict",
+        "shape": [
+          1,
+          994
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "action",
+        "shape": [
+          1,
+          29
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "zero_input_finite": true,
+    "repeat_max_abs_diff": 0.0
+  },
+  "model_step_000100_encoder.onnx": {
+    "onnx_checker": "pass",
+    "inputs": [
+      {
+        "name": "obs_dict",
+        "shape": [
+          1,
+          1751
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "encoded_tokens",
+        "shape": [
+          1,
+          64
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "zero_input_finite": true,
+    "repeat_max_abs_diff": 0.0
+  },
+  "model_step_000100_g1.onnx": {
+    "onnx_checker": "pass",
+    "inputs": [
+      {
+        "name": "obs_dict",
+        "shape": [
+          1,
+          1570
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "action",
+        "shape": [
+          1,
+          29
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "zero_input_finite": true,
+    "repeat_max_abs_diff": 0.0
+  },
+  "model_step_000100_smpl.onnx": {
+    "onnx_checker": "pass",
+    "inputs": [
+      {
+        "name": "obs_dict",
+        "shape": [
+          1,
+          1770
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "action",
+        "shape": [
+          1,
+          29
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "zero_input_finite": true,
+    "repeat_max_abs_diff": 0.0
+  },
+  "model_step_000100_teleop.onnx": {
+    "onnx_checker": "pass",
+    "inputs": [
+      {
+        "name": "obs_dict",
+        "shape": [
+          1,
+          1197
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "action",
+        "shape": [
+          1,
+          29
+        ],
+        "type": "tensor(float)"
+      }
+    ],
+    "zero_input_finite": true,
+    "repeat_max_abs_diff": 0.0
+  }
+}
