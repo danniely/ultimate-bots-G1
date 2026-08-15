@@ -1,0 +1,16 @@
+Motion Information: s_batido_v6_buffered
+==================================================
+
+fps: 50
+source_frames: 81
+target_frames: 328
+hold_frames: 50
+approach_frames: 35
+launch_frames: 25
+launch_source_end: 12
+source_remainder_start_frame: 110
+core_end_frame: 177
+recovery_start_frame: 178
+recovery_coast_frames: 15
+final_hold_start_frame: 253
+final_hold_frames: 75

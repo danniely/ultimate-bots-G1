@@ -1,0 +1,83 @@
+{
+  "runs_requested": 10,
+  "initial_settled": 1,
+  "commands_completed": 1,
+  "full_motions": 1,
+  "final_stable": 0,
+  "final_upright_min_mean": 0.31085762316128274,
+  "final_joint_speed_peak_max_rad_s": 14.101356506,
+  "final_base_angular_speed_peak_max_rad_s": 5.457407491777715,
+  "motion_joint_speed_peak_max_rad_s": 24.057834625,
+  "motion_torque_peak_max_nm": 139.0,
+  "runs": [
+    {
+      "run": "run_01",
+      "initial_settled": true,
+      "command_completed": true,
+      "has_motion": true,
+      "motion_frames": 328,
+      "full_motion": true,
+      "final_stable": false,
+      "final_upright_min": 0.31085762316128274,
+      "final_joint_speed_peak_rad_s": 14.101356506,
+      "final_base_angular_speed_peak_rad_s": 5.457407491777715,
+      "motion_joint_speed_peak_rad_s": 24.057834625,
+      "motion_torque_peak_nm": 139.0,
+      "motion_torque_p99_nm": 63.96011383084861
+    },
+    {
+      "run": "run_02",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_03",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_04",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_05",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_06",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_07",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_08",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_09",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_10",
+      "initial_settled": false,
+      "command_completed": false,
+      "has_motion": false
+    }
+  ]
+}

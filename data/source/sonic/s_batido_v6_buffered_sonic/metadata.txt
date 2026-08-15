@@ -1,0 +1,7 @@
+Metadata for: s_batido_v6_buffered
+========================================
+
+Body part indexes:
+[ 0]
+
+Total timesteps: 328
