@@ -1,0 +1,20 @@
+{
+  "logging": {
+    "dt": 0.02,
+    "num_joints": 29,
+    "num_actions": 29,
+    "ring_capacity": 10000
+  },
+  "robot_config": {
+    "control_frequency": 50,
+    "encoder_file": "/srv/sonic/ultimate-bots-G1/exports/v8/candidates/step025/onnx/model_step_000025_encoder.onnx",
+    "is_using_encoder": true,
+    "model_path": "/srv/sonic/ultimate-bots-G1/exports/v8/candidates/step025/onnx/model_step_000025_decoder.onnx",
+    "obs_config_path": "/srv/sonic/ultimate-bots-G1/exports/v8/candidates/step025/onnx/observation_config.yaml",
+    "planner_fp16": false,
+    "planner_frequency": 10,
+    "planner_path": "none",
+    "policy_fp16": false,
+    "reference_motion_path": "reference/s_batido_v8_landing"
+  }
+}

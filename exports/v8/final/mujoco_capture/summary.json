@@ -1,0 +1,80 @@
+{
+  "runs_requested": 5,
+  "initial_settled": 5,
+  "commands_completed": 0,
+  "full_motions": 0,
+  "final_stable": 1,
+  "final_upright_min_mean": 0.9909686055680849,
+  "final_joint_speed_peak_max_rad_s": 9.569524765,
+  "final_base_angular_speed_peak_max_rad_s": 1.6620280359867659,
+  "motion_joint_speed_peak_max_rad_s": 9.569524765,
+  "motion_torque_peak_max_nm": 61.172790527,
+  "runs": [
+    {
+      "run": "run_1",
+      "initial_settled": true,
+      "command_completed": false,
+      "has_motion": false
+    },
+    {
+      "run": "run_2",
+      "initial_settled": true,
+      "command_completed": false,
+      "has_motion": true,
+      "motion_frames": 75,
+      "full_motion": false,
+      "final_stable": false,
+      "final_upright_min": 0.9913144061223089,
+      "final_joint_speed_peak_rad_s": 8.827039719,
+      "final_base_angular_speed_peak_rad_s": 1.6620280359867659,
+      "motion_joint_speed_peak_rad_s": 8.827039719,
+      "motion_torque_peak_nm": 45.72889328,
+      "motion_torque_p99_nm": 43.172145844
+    },
+    {
+      "run": "run_3",
+      "initial_settled": true,
+      "command_completed": false,
+      "has_motion": true,
+      "motion_frames": 85,
+      "full_motion": false,
+      "final_stable": false,
+      "final_upright_min": 0.9898123421999543,
+      "final_joint_speed_peak_rad_s": 9.569524765,
+      "final_base_angular_speed_peak_rad_s": 1.3413130055369582,
+      "motion_joint_speed_peak_rad_s": 9.569524765,
+      "motion_torque_peak_nm": 61.172790527,
+      "motion_torque_p99_nm": 34.067952270720056
+    },
+    {
+      "run": "run_4",
+      "initial_settled": true,
+      "command_completed": false,
+      "has_motion": true,
+      "motion_frames": 96,
+      "full_motion": false,
+      "final_stable": false,
+      "final_upright_min": 0.990834049643383,
+      "final_joint_speed_peak_rad_s": 7.019303322,
+      "final_base_angular_speed_peak_rad_s": 1.34701554157041,
+      "motion_joint_speed_peak_rad_s": 7.019303322,
+      "motion_torque_peak_nm": 56.23563385,
+      "motion_torque_p99_nm": 36.74616050723003
+    },
+    {
+      "run": "run_5",
+      "initial_settled": true,
+      "command_completed": false,
+      "has_motion": true,
+      "motion_frames": 13,
+      "full_motion": false,
+      "final_stable": true,
+      "final_upright_min": 0.991913624306693,
+      "final_joint_speed_peak_rad_s": 2.141203403,
+      "final_base_angular_speed_peak_rad_s": 0.25143036835975696,
+      "motion_joint_speed_peak_rad_s": 2.141203403,
+      "motion_torque_peak_nm": 25.663324356,
+      "motion_torque_p99_nm": 25.663324356
+    }
+  ]
+}

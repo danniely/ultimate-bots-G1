@@ -9,6 +9,7 @@ from isaaclab.utils.math import quat_apply, quat_error_magnitude
 import torch
 
 from gear_sonic.envs.manager_env.mdp.commands import TrackingCommand, _get_body_indexes
+from gear_sonic.envs.manager_env.mdp.events import EventCfg
 from gear_sonic.envs.manager_env.mdp.rewards import RewardsCfg
 
 if TYPE_CHECKING:
@@ -60,6 +61,22 @@ class V5StabilityRewardsCfg(V3RobustRewardsCfg):
     recovery_knee_torque_reserve = None
     late_recovery_upright = None
     late_recovery_low_base_velocity = None
+
+
+@configclass
+class V8LandingRewardsCfg(V5StabilityRewardsCfg):
+    """Landing-energy and capture-point terms for cross-simulator recovery."""
+
+    landing_joint_velocity_overload = None
+    recovery_joint_velocity_overload = None
+    recovery_capture_point = None
+
+
+@configclass
+class V8EventCfg(EventCfg):
+    """Base SONIC randomization plus actuator gain uncertainty."""
+
+    actuator_gains = None
 
 
 def _phase_mask(
@@ -317,6 +334,33 @@ def phase_center_over_feet(
     feet_midpoint_xy = command.robot_body_pos_w[:, ankle_ids, :2].mean(dim=1)
     pelvis_xy = command.robot_anchor_pos_w[:, :2]
     error = torch.square(pelvis_xy - feet_midpoint_xy).sum(dim=-1)
+    return _phase_mask(command, start_frame, end_frame) * torch.exp(
+        -error / (std * std)
+    )
+
+
+def phase_capture_point_over_feet(
+    env: ManagerBasedRLEnv,
+    command_name: str,
+    start_frame: int,
+    end_frame: int,
+    ankle_body_names: list[str],
+    horizon_s: float = 0.22,
+    std: float = 0.24,
+) -> torch.Tensor:
+    """Reward projected pelvis motion ending inside the two-foot support area.
+
+    A static center-of-support term can be high while the pelvis still carries
+    enough horizontal momentum to fall after touchdown.  This short-horizon
+    capture-point approximation makes that residual velocity visible to PPO.
+    """
+    command: TrackingCommand = env.command_manager.get_term(command_name)
+    ankle_ids = _get_body_indexes(command, ankle_body_names)
+    feet_midpoint_xy = command.robot_body_pos_w[:, ankle_ids, :2].mean(dim=1)
+    pelvis_xy = command.robot_anchor_pos_w[:, :2]
+    pelvis_velocity_xy = command.robot_body_lin_vel_w[:, 0, :2]
+    capture_xy = pelvis_xy + horizon_s * pelvis_velocity_xy
+    error = torch.square(capture_xy - feet_midpoint_xy).sum(dim=-1)
     return _phase_mask(command, start_frame, end_frame) * torch.exp(
         -error / (std * std)
     )

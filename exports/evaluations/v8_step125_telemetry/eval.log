@@ -1,0 +1,203 @@
+2026-08-16 09:52:30.103 | WARNING  | gear_sonic.utils.config_utils:register_rl_resolvers:20 - Warning: Some resolvers already registered: resolver 'eval' is already registered
+/srv/sonic/GR00T-WholeBodyControl/gear_sonic/eval_agent_trl.py:61: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_path="config", config_name="base_eval")
+/srv/sonic/env_isaaclab/lib/python3.11/site-packages/hydra/_internal/hydra.py:119: UserWarning: Future Hydra versions will no longer change working directory at job runtime by default.
+See https://hydra.cc/docs/1.2/upgrades/1.1_to_1.2/changes_to_job_working_dir/ for more information.
+  ret = run_job(
+[32m2026-08-16 09:52:30.362[0m | [1mINFO    [0m | [36m__main__[0m:[36mmain[0m:[36m90[0m - [1mLoading training config file from /srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/config.yaml[0m
+Setting seed: 0
+[WARN][AppLauncher]: There are no arguments attached to the ArgumentParser object. If you have your own arguments, please load your own arguments before calling the `AppLauncher.add_app_launcher_args` method. This allows the method to check the validity of the arguments and perform checks for argument names.
+[INFO][AppLauncher]: Using device: cuda
+[INFO][AppLauncher]: Loading experience file: /srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/apps/isaaclab.python.headless.rendering.kit
+Loading user config located at: '/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[2026-08-16 09:52:41,407][asyncio][DEBUG] - Using selector: EpollSelector
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 580.173.02    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA H100 80GB HBM3            | Yes: 0 |     | 81559   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2330      | cedca936.. |
+|     |                                  |        |     |            | 8d        |            |
+|=============================================================================================|
+| OS: 24.04.4 LTS (Noble Numbat) ubuntu, Version: 24.04.4, Kernel: 6.11.0-1016-nvidia
+| Processor: Intel(R) Xeon(R) Platinum 8468
+| Cores: 8 | Logical Cores: 16
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 201291 | Free Memory: 194578
+| Total Page/Swap (MB): 0 | Free Page/Swap: 0
+|---------------------------------------------------------------------------------------------|
+cat: '/sys/devices/system/cpu/cpu*/cpufreq/scaling_governor': No such file or directory
+[2026-08-16 09:52:43,027][AutoNode][DEBUG] - Defining data type 'any' as 'Any'
+[2026-08-16 09:52:43,027][AutoNode][DEBUG] - Defining data type 'bool' as 'Bool' and array 'BoolArray
+[2026-08-16 09:52:43,027][AutoNode][DEBUG] - Defining data type 'bundle' as 'Bundle'
+[2026-08-16 09:52:43,027][AutoNode][DEBUG] - Defining data type 'colord[3]' as 'Color3d' and array 'Color3dArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'colorf[3]' as 'Color3f' and array 'Color3fArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'colorh[3]' as 'Color3h' and array 'Color3hArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'colord[4]' as 'Color4d' and array 'Color4dArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'colorf[4]' as 'Color4f' and array 'Color4fArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'colorh[4]' as 'Color4h' and array 'Color4hArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'double' as 'Double' and array 'DoubleArray
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'double[2]' as 'Double2' and array 'Double2Array
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'double[3]' as 'Double3' and array 'Double3Array
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'double[4]' as 'Double4' and array 'Double4Array
+[2026-08-16 09:52:43,028][AutoNode][DEBUG] - Defining data type 'execution' as 'Execution'
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'float' as 'Float' and array 'FloatArray
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'float[2]' as 'Float2' and array 'Float2Array
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'float[3]' as 'Float3' and array 'Float3Array
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'float[4]' as 'Float4' and array 'Float4Array
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'frame[4]' as 'Frame' and array 'FrameArray
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'half' as 'Half' and array 'HalfArray
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'half[2]' as 'Half2' and array 'Half2Array
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'half[3]' as 'Half3' and array 'Half3Array
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'half[4]' as 'Half4' and array 'Half4Array
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'int' as 'Int' and array 'IntArray
+[2026-08-16 09:52:43,029][AutoNode][DEBUG] - Defining data type 'int[2]' as 'Int2' and array 'Int2Array
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'int[3]' as 'Int3' and array 'Int3Array
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'int[4]' as 'Int4' and array 'Int4Array
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'int64' as 'Int64' and array 'Int64Array
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'matrixd[2]' as 'Matrix2d' and array 'Matrix2dArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'matrixd[3]' as 'Matrix3d' and array 'Matrix3dArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'matrixd[4]' as 'Matrix4d' and array 'Matrix4dArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'normald[3]' as 'Normal3d' and array 'Normal3dArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'normalf[3]' as 'Normal3f' and array 'Normal3fArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'normalh[3]' as 'Normal3h' and array 'Normal3hArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'objectId' as 'ObjectId' and array 'ObjectIdArray
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'path' as 'Path'
+[2026-08-16 09:52:43,030][AutoNode][DEBUG] - Defining data type 'pointd[3]' as 'Point3d' and array 'Point3dArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'pointf[3]' as 'Point3f' and array 'Point3fArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'pointh[3]' as 'Point3h' and array 'Point3hArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'quatd[4]' as 'Quatd' and array 'QuatdArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'quatf[4]' as 'Quatf' and array 'QuatfArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'quath[4]' as 'Quath' and array 'QuathArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'string' as 'String'
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'target' as 'Target'
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'texcoordd[2]' as 'TexCoord2d' and array 'TexCoord2dArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'texcoordf[2]' as 'TexCoord2f' and array 'TexCoord2fArray
+[2026-08-16 09:52:43,031][AutoNode][DEBUG] - Defining data type 'texcoordh[2]' as 'TexCoord2h' and array 'TexCoord2hArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'texcoordd[3]' as 'TexCoord3d' and array 'TexCoord3dArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'texcoordf[3]' as 'TexCoord3f' and array 'TexCoord3fArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'texcoordh[3]' as 'TexCoord3h' and array 'TexCoord3hArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'timecode' as 'Timecode' and array 'TimecodeArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'token' as 'Token' and array 'TokenArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'uchar' as 'UChar' and array 'UCharArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'uint' as 'UInt' and array 'UIntArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'uint64' as 'UInt64' and array 'UInt64Array
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'vectord[3]' as 'Vector3d' and array 'Vector3dArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'vectorf[3]' as 'Vector3f' and array 'Vector3fArray
+[2026-08-16 09:52:43,032][AutoNode][DEBUG] - Defining data type 'vectorh[3]' as 'Vector3h' and array 'Vector3hArray
+[2026-08-16 09:52:45,812][h5py._conv][DEBUG] - Creating converter from 7 to 5
+[2026-08-16 09:52:45,812][h5py._conv][DEBUG] - Creating converter from 5 to 7
+[2026-08-16 09:52:45,812][h5py._conv][DEBUG] - Creating converter from 7 to 5
+[2026-08-16 09:52:45,812][h5py._conv][DEBUG] - Creating converter from 5 to 7
+[2026-08-16 09:52:45,924][matplotlib][DEBUG] - matplotlib data path: /srv/sonic/env_isaaclab/lib/python3.11/site-packages/matplotlib/mpl-data
+[2026-08-16 09:52:45,936][matplotlib][DEBUG] - CONFIGDIR=/home/danniel/.config/matplotlib
+[2026-08-16 09:52:45,938][matplotlib][DEBUG] - interactive is False
+[2026-08-16 09:52:45,938][matplotlib][DEBUG] - platform is linux
+[2026-08-16 09:52:46,155][matplotlib][DEBUG] - CACHEDIR=/home/danniel/.cache/matplotlib
+[2026-08-16 09:52:46,157][matplotlib.font_manager][DEBUG] - Using fontManager instance from /home/danniel/.cache/matplotlib/fontlist-v390.json
+[2026-08-16 09:54:16,417][filelock][DEBUG] - Attempting to release lock 126438674741008 on /tmp/isaaclab_app_launcher.lock
+[2026-08-16 09:54:16,418][filelock][DEBUG] - Lock 126438674741008 released on /tmp/isaaclab_app_launcher.lock
+[32m2026-08-16 09:54:18.539[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.torch_humanoid_batch[0m:[36m<module>[0m:[36m40[0m - [1mUsing Humanoid Batch[0m
+[DEBUG] Instantiated events: V8EventCfg(physics_material=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_rigid_body_material', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names='.*', body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'static_friction_range': [0.5, 1.3], 'dynamic_friction_range': [0.4, 1.1], 'restitution_range': [0.0, 0.2], 'num_buckets': 64}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), add_joint_default_pos=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_joint_default_pos', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=['.*'], joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names=None, body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'pos_distribution_params': [-0.01, 0.01], 'operation': 'add'}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), add_hand_joint_default_pos=None, base_com=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_rigid_body_com', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names='torso_link', body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'com_range': {'x': [-0.025, 0.025], 'y': [-0.03, 0.03], 'z': [-0.035, 0.035]}}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), push_robot=None, randomize_rigid_body_mass=EventTermCfg(func='gear_sonic.envs.manager_env.mdp:randomize_rigid_body_mass', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=None, joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names='.*wrist_yaw.*|torso_link', body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'mass_distribution_params': [0.85, 1.2], 'operation': 'scale'}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0), actuator_gains=EventTermCfg(func='isaaclab.envs.mdp:randomize_actuator_gains', params={'asset_cfg': SceneEntityCfg(name='robot', joint_names=['.*'], joint_ids=slice(None, None, None), fixed_tendon_names=None, fixed_tendon_ids=slice(None, None, None), body_names=None, body_ids=slice(None, None, None), object_collection_names=None, object_collection_ids=slice(None, None, None), preserve_order=False), 'stiffness_distribution_params': [0.9, 1.1], 'damping_distribution_params': [0.8, 1.2], 'operation': 'scale', 'distribution': 'uniform'}, mode='startup', interval_range_s=None, is_global_time=False, min_step_count_between_reset=0))
+[DEBUG]   Event 'physics_material': EventTermCfg
+[DEBUG]   Event 'add_joint_default_pos': EventTermCfg
+[DEBUG]   Event 'base_com': EventTermCfg
+[DEBUG]   Event 'randomize_rigid_body_mass': EventTermCfg
+[DEBUG]   Event 'actuator_gains': EventTermCfg
+Setting seed: 0
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : 0
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[INFO] Generating terrains randomly took : 3.101772 seconds
+[2026-08-16 09:54:21,890][trimesh][DEBUG] - 2 items cleared from cache: ['face_normals', 'triangles']
+[INFO]: Time taken for scene creation : 5.633392 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 1
+	Environment spacing   : 2.0
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : []
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 7.610303 seconds
+[32m2026-08-16 09:54:32.072[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36m__init__[0m:[36m235[0m - [1mLoaded skeleton from gear_sonic/data/assets/robot_description/mjcf/g1_29dof_rev_1_0.xml[0m
+[32m2026-08-16 09:54:32.073[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36m__init__[0m:[36m236[0m - [1mLoading motion data from /srv/sonic/ultimate-bots-G1/data/motion_lib/s_batido_v8_landing.pkl...[0m
+[32m2026-08-16 09:54:32.074[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_data[0m:[36m472[0m - [1mLoaded 1 motions[0m
+Loading Meshes ... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Loading Geoms... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+[32m2026-08-16 09:54:32.562[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1091[0m - [1mLoading 1 motions...[0m
+[32m2026-08-16 09:54:32.563[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1092[0m - [1mSampling motion: tensor([0], device='cuda:0'), ....[0m
+[32m2026-08-16 09:54:32.563[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1093[0m - [1mCurrent motion keys: ['s_batido_v8_landing_sonic'], ....[0m
+[32m2026-08-16 09:54:32.563[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1120[0m - [1mIncreased file descriptor limits from 2450/1048576 to 1048576/1048576[0m
+[32m2026-08-16 09:54:32.713[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1140[0m - [1mLoading motions with 1 jobs...[0m
+Loading motions... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+Gathering results for non-navigation dataset... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  
+Processing motions... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 0:00:00
+[32m2026-08-16 09:54:32.768[0m | [1mINFO    [0m | [36mgear_sonic.utils.motion_lib.motion_lib_base[0m:[36mload_motions[0m:[36m1577[0m - [1mLoaded 1 motions with a total length of 9.320s and 467 frames.[0m
+[INFO] Command Manager:  <CommandManager> contains 1 active terms.
++----------------------------------+
+|       Active Command Terms       |
++-------+--------+-----------------+
+| Index | Name   |       Type      |
++-------+--------+-----------------+
+|   0   | motion | TrackingCommand |
++-------+--------+-----------------+
+
+[INFO] Event Manager:  <EventManager> contains 1 active terms.
++----------------------------------------+
+| Active Event Terms in Mode: 'startup'  |
++--------+-------------------------------+
+| Index  | Name                          |
++--------+-------------------------------+
+|   0    | physics_material              |
+|   1    | add_joint_default_pos         |
+|   2    | base_com                      |
+|   3    | randomize_rigid_body_mass     |
+|   4    | actuator_gains                |
++--------+-------------------------------+
+
+[32m2026-08-16 09:54:33.479[0m | [1mINFO    [0m | [36mgear_sonic.envs.manager_env.mdp.recorders[0m:[36m__init__[0m:[36m44[0m - [1m=== Start recording video to /srv/sonic/ultimate-bots-G1/exports/evaluations/v8_step125_telemetry/video ===[0m
+[32m2026-08-16 09:54:33.479[0m | [1mINFO    [0m | [36msonic_debug.frame_recorder[0m:[36m__init__[0m:[36m52[0m - [1m=== Frame diagnostics: saving to /srv/sonic/ultimate-bots-G1/exports/evaluations/v8_step125_telemetry/frames ===[0m
+Error executing job with overrides: ['+checkpoint=/srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/model_step_000125.pt', '+headless=True', '++eval_callbacks=im_eval', '++run_eval_loop=False', '++num_envs=1', '++manager_env.config.render_results=True', '++manager_env.config.render_frame_skip=1', '++manager_env.config.save_rendering_dir=/srv/sonic/ultimate-bots-G1/exports/evaluations/v8_step125_telemetry/video', '~manager_env/recorders=empty', '+manager_env/recorders=render', '++manager_env.recorders._target_=sonic_debug.frame_recorder.DebugRecordersCfg', '++manager_env.recorders.frame_diagnostics._target_=sonic_debug.frame_recorder.FrameDiagnosticsRecorderCfg', '++manager_env.recorders.frame_diagnostics.save_path=/srv/sonic/ultimate-bots-G1/exports/evaluations/v8_step125_telemetry/frames', '++manager_env.recorders.frame_diagnostics.max_envs=1', '++manager_env.recorders.frame_diagnostics.flush_interval=10', '++manager_env.commands.motion.motion_lib_cfg.motion_file=/srv/sonic/ultimate-bots-G1/data/motion_lib/s_batido_v8_landing.pkl', '++manager_env.commands.motion.motion_lib_cfg.smpl_motion_file=dummy']
+Traceback (most recent call last):
+  File "/srv/sonic/GR00T-WholeBodyControl/gear_sonic/eval_agent_trl.py", line 371, in main
+    env = train_agent_trl.create_manager_env(config, device, args_cli)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/sonic/GR00T-WholeBodyControl/gear_sonic/train_agent_trl.py", line 147, in create_manager_env
+    env = ManagerBasedRLEnv(
+          ^^^^^^^^^^^^^^^^^^
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/source/isaaclab/isaaclab/envs/manager_based_rl_env.py", line 82, in __init__
+    super().__init__(cfg=cfg)
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/source/isaaclab/isaaclab/envs/manager_based_env.py", line 173, in __init__
+    self.load_managers()
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/source/isaaclab/isaaclab/envs/manager_based_rl_env.py", line 118, in load_managers
+    super().load_managers()
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/source/isaaclab/isaaclab/envs/manager_based_env.py", line 291, in load_managers
+    self.recorder_manager = RecorderManager(self.cfg.recorders, self)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/source/isaaclab/isaaclab/managers/recorder_manager.py", line 172, in __init__
+    self._dataset_file_handler.create(
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/isaaclab/source/isaaclab/isaaclab/utils/datasets/hdf5_dataset_file_handler.py", line 49, in create
+    self._hdf5_file_stream = h5py.File(file_path, "w")
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/h5py/_hl/files.py", line 555, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/srv/sonic/env_isaaclab/lib/python3.11/site-packages/h5py/_hl/files.py", line 238, in make_fid
+    fid = h5f.create(name, h5f.ACC_TRUNC, fapl=fapl, fcpl=fcpl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 126, in h5py.h5f.create
+BlockingIOError: [Errno 11] Unable to synchronously create file (unable to lock file, errno = 11, error message = 'Resource temporarily unavailable')
+
+Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

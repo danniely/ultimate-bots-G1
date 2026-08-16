@@ -1,0 +1,14 @@
+Motion Information: s_batido_v8_landing
+========================================
+
+fps: 50
+source_frames: 333
+target_frames: 467
+landing_source_frames: 167:210
+landing_factor: 3
+recovery_source_frames: 210:258
+recovery_factor: 2
+highlight_end_frame: 167
+landing_end_frame: 296
+recovery_start_frame: 215
+final_hold_start_frame: 392

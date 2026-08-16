@@ -1,0 +1,52 @@
+[
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/exported/model_step_000025_smpl.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 1.8477439880371094e-06,
+    "mean_abs_diff": 5.52113704088697e-07,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/exported/model_step_000025_g1.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 1.6689300537109375e-06,
+    "mean_abs_diff": 6.297667596300016e-07,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/exported/model_step_000025_teleop.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 1.1995434761047363e-06,
+    "mean_abs_diff": 3.8871476704116503e-07,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/exported/model_step_000025_encoder.onnx",
+    "shape": [
+      1,
+      64
+    ],
+    "max_abs_diff": 0.0,
+    "mean_abs_diff": 0.0,
+    "all_finite": true
+  },
+  {
+    "model": "/srv/sonic/ultimate-bots-G1/exports/v8/train/checkpoints/exported/model_step_000025_decoder.onnx",
+    "shape": [
+      1,
+      29
+    ],
+    "max_abs_diff": 1.6689300537109375e-06,
+    "mean_abs_diff": 3.9590844380654744e-07,
+    "all_finite": true
+  }
+]

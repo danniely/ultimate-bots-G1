@@ -1,0 +1,8 @@
+{
+  "settled": true,
+  "samples": 25,
+  "upright_min": 0.9990741955592035,
+  "joint_speed_peak_rad_s": 2.062310457,
+  "base_angular_speed_peak_rad_s": 0.47067151556884507,
+  "reason": "stable_window"
+}

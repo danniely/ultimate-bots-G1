@@ -1,0 +1,130 @@
+{
+  "hardware_moderate": {
+    "max_acceleration_distance": 2.455,
+    "max_mpjpe_global_mm": 172.405,
+    "max_mpjpe_local_mm": 100.194,
+    "max_progress_rate": 1.0,
+    "max_success_rate": 1.0,
+    "max_velocity_distance": 6.475,
+    "mean_acceleration_distance": 2.455,
+    "mean_mpjpe_global_mm": 172.405,
+    "mean_mpjpe_local_mm": 100.194,
+    "mean_progress_rate": 1.0,
+    "mean_success_rate": 1.0,
+    "mean_velocity_distance": 6.475,
+    "min_acceleration_distance": 2.455,
+    "min_mpjpe_global_mm": 172.405,
+    "min_mpjpe_local_mm": 100.194,
+    "min_progress_rate": 1.0,
+    "min_success_rate": 1.0,
+    "min_velocity_distance": 6.475,
+    "runs": 1,
+    "seeds": [
+      {
+        "acceleration_distance": 2.455,
+        "mpjpe_global_mm": 172.405,
+        "mpjpe_local_mm": 100.194,
+        "progress_rate": 1.0,
+        "seed": "0",
+        "success_rate": 1.0,
+        "velocity_distance": 6.475
+      }
+    ]
+  },
+  "hardware_nominal": {
+    "max_acceleration_distance": 2.415,
+    "max_mpjpe_global_mm": 192.216,
+    "max_mpjpe_local_mm": 100.227,
+    "max_progress_rate": 1.0,
+    "max_success_rate": 1.0,
+    "max_velocity_distance": 6.558,
+    "mean_acceleration_distance": 2.415,
+    "mean_mpjpe_global_mm": 192.216,
+    "mean_mpjpe_local_mm": 100.227,
+    "mean_progress_rate": 1.0,
+    "mean_success_rate": 1.0,
+    "mean_velocity_distance": 6.558,
+    "min_acceleration_distance": 2.415,
+    "min_mpjpe_global_mm": 192.216,
+    "min_mpjpe_local_mm": 100.227,
+    "min_progress_rate": 1.0,
+    "min_success_rate": 1.0,
+    "min_velocity_distance": 6.558,
+    "runs": 1,
+    "seeds": [
+      {
+        "acceleration_distance": 2.415,
+        "mpjpe_global_mm": 192.216,
+        "mpjpe_local_mm": 100.227,
+        "progress_rate": 1.0,
+        "seed": "0",
+        "success_rate": 1.0,
+        "velocity_distance": 6.558
+      }
+    ]
+  },
+  "hardware_official": {
+    "max_acceleration_distance": 2.418,
+    "max_mpjpe_global_mm": 186.423,
+    "max_mpjpe_local_mm": 100.37,
+    "max_progress_rate": 1.0,
+    "max_success_rate": 1.0,
+    "max_velocity_distance": 6.504,
+    "mean_acceleration_distance": 2.418,
+    "mean_mpjpe_global_mm": 186.423,
+    "mean_mpjpe_local_mm": 100.37,
+    "mean_progress_rate": 1.0,
+    "mean_success_rate": 1.0,
+    "mean_velocity_distance": 6.504,
+    "min_acceleration_distance": 2.418,
+    "min_mpjpe_global_mm": 186.423,
+    "min_mpjpe_local_mm": 100.37,
+    "min_progress_rate": 1.0,
+    "min_success_rate": 1.0,
+    "min_velocity_distance": 6.504,
+    "runs": 1,
+    "seeds": [
+      {
+        "acceleration_distance": 2.418,
+        "mpjpe_global_mm": 186.423,
+        "mpjpe_local_mm": 100.37,
+        "progress_rate": 1.0,
+        "seed": "0",
+        "success_rate": 1.0,
+        "velocity_distance": 6.504
+      }
+    ]
+  },
+  "hardware_recovery_push": {
+    "max_acceleration_distance": 2.455,
+    "max_mpjpe_global_mm": 172.405,
+    "max_mpjpe_local_mm": 100.194,
+    "max_progress_rate": 1.0,
+    "max_success_rate": 1.0,
+    "max_velocity_distance": 6.475,
+    "mean_acceleration_distance": 2.455,
+    "mean_mpjpe_global_mm": 172.405,
+    "mean_mpjpe_local_mm": 100.194,
+    "mean_progress_rate": 1.0,
+    "mean_success_rate": 1.0,
+    "mean_velocity_distance": 6.475,
+    "min_acceleration_distance": 2.455,
+    "min_mpjpe_global_mm": 172.405,
+    "min_mpjpe_local_mm": 100.194,
+    "min_progress_rate": 1.0,
+    "min_success_rate": 1.0,
+    "min_velocity_distance": 6.475,
+    "runs": 1,
+    "seeds": [
+      {
+        "acceleration_distance": 2.455,
+        "mpjpe_global_mm": 172.405,
+        "mpjpe_local_mm": 100.194,
+        "progress_rate": 1.0,
+        "seed": "0",
+        "success_rate": 1.0,
+        "velocity_distance": 6.475
+      }
+    ]
+  }
+}
